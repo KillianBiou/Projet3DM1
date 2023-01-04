@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3844424a2646ccb4590c8ec38a4f4550, type: 3}
-  m_Name: LTurn
+  m_Script: {fileID: 11500000, guid: 76b85faccb9b24d4b8e6b3e88d42c396, type: 3}
+  m_Name: Spikes
   m_EditorClassIdentifier: 
-  m_name: LTurn
-  m_maxLevel: 5
-  m_template: {fileID: 8602362672818590042, guid: 106678c089d8e3f458b0a78192e61187,
-    type: 3}
-  m_timer: 5
+  m_name: Spikes
+  m_damage: 5
+  m_cooldown: 0.5
+  m_activationKey: 116

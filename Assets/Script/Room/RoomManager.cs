@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+using System;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Rendering;
-
 public class RoomManager : MonoBehaviour
 {
     [SerializeField]
@@ -16,6 +15,9 @@ public class RoomManager : MonoBehaviour
     private void Start()
     {
         roomContainer = GameObject.Find("RoomContainer");
+
+        InstanciateRoom(roomDeck.GetRoom("Classic"));
+        InstanciateRestRoom();
     }
 
     private void Update()
@@ -53,9 +55,15 @@ public class RoomManager : MonoBehaviour
                 currentRoom.transform.Find("Exit").position,
                 roomToInstanciate.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
                 roomContainer.transform);
+            currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
+            currentRoom.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
         }
         else
+        {
             currentRoom = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation, roomContainer.transform);
+            currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
+            currentRoom.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
+        }
     }
 
     private void InstanciateRestRoom()
@@ -68,6 +76,8 @@ public class RoomManager : MonoBehaviour
                 roomContainer.transform);
         }
         else
+        {
             currentRoom = Instantiate(restRoom.m_template, Vector3.zero, restRoom.m_template.transform.rotation, roomContainer.transform);
+        }
     }
 }
