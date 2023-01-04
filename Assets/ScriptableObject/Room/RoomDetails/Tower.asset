@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844424a2646ccb4590c8ec38a4f4550, type: 3}
   m_Name: Tower
   m_EditorClassIdentifier: 
-  template: {fileID: 56089659967075386, guid: 82348063e57a70e449d1cc16f5f0f4ee, type: 3}
+  m_name: Tower
+  m_template: {fileID: 0}

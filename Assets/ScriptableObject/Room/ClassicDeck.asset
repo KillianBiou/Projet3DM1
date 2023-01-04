@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1470f3279bdce48b4318f0992e5ba9, type: 3}
+  m_Name: ClassicDeck
+  m_EditorClassIdentifier: 
+  m_rooms:
+  - {fileID: 11400000, guid: 3c6bf10363903334d83950b1e2d21d39, type: 2}
+  - {fileID: 11400000, guid: 7bb4d80d5e8a2094d9858124b0b67470, type: 2}
+  - {fileID: 11400000, guid: 014176ba651394f48bb0b0ffb439ac24, type: 2}
+  - {fileID: 11400000, guid: bc8656a64faae9744a9a70b38633319d, type: 2}

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844424a2646ccb4590c8ec38a4f4550, type: 3}
   m_Name: Classic
   m_EditorClassIdentifier: 
-  roomSize: {x: 30, y: 30}
-  template: {fileID: 2085490306352845665, guid: 391cb0c4fcb3c0d4c902dbc5e305483b,
-    type: 3}
+  m_name: Classic
+  m_template: {fileID: 0}

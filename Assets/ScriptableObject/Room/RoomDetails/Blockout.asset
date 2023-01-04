@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844424a2646ccb4590c8ec38a4f4550, type: 3}
   m_Name: Blockout
   m_EditorClassIdentifier: 
-  roomSize: {x: 40, y: 20}
-  template: {fileID: 3441887945754035474, guid: 845eb33fc2704534891baf66c7f007f6,
-    type: 3}
+  m_name: Blockout
+  m_template: {fileID: 0}

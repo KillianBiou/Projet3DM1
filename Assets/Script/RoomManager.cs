@@ -8,38 +8,39 @@ public class RoomManager : MonoBehaviour
     private RoomScriptableObject restRoom;
 
     [SerializeField]
-    private List<RoomScriptableObject> room;
+    private RoomDeckScriptableObject roomDeck;
 
+    private GameObject roomContainer;
     private GameObject currentRoom;
 
     private void Start()
     {
-        
+        roomContainer = GameObject.Find("RoomContainer");
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && roomDeck.GetRoom("Classic"))
         {
-            InstanciateRoom(room[0]);
+            InstanciateRoom(roomDeck.GetRoom("Classic"));
             InstanciateRestRoom();
         }
-        else if(Input.GetKeyDown(KeyCode.X)) {
-            InstanciateRoom(room[1]);
+        else if(Input.GetKeyDown(KeyCode.X) && roomDeck.GetRoom("LTurn")) {
+            InstanciateRoom(roomDeck.GetRoom("LTurn"));
             InstanciateRestRoom();
         }
-        else if(Input.GetKeyDown(KeyCode.C)) {
-            InstanciateRoom(room[2]);
+        else if(Input.GetKeyDown(KeyCode.C) && roomDeck.GetRoom("RTurn")) {
+            InstanciateRoom(roomDeck.GetRoom("RTurn"));
             InstanciateRestRoom();
         }
-        else if (Input.GetKeyDown(KeyCode.V))
+        else if (Input.GetKeyDown(KeyCode.V) && roomDeck.GetRoom("Tower"))
         {
-            InstanciateRoom(room[3]);
+            InstanciateRoom(roomDeck.GetRoom("Tower"));
             InstanciateRestRoom();
         }
-        else if (Input.GetKeyDown(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("Blockout"))
         {
-            InstanciateRoom(room[4]);
+            InstanciateRoom(roomDeck.GetRoom("Blockout"));
             InstanciateRestRoom();
         }
     }
@@ -48,23 +49,25 @@ public class RoomManager : MonoBehaviour
     {
         if (currentRoom != null)
         {
-            currentRoom = Instantiate(roomToInstanciate.template,
+            currentRoom = Instantiate(roomToInstanciate.m_template,
                 currentRoom.transform.Find("Exit").position,
-                roomToInstanciate.template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation);
+                roomToInstanciate.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
+                roomContainer.transform);
         }
         else
-            currentRoom = Instantiate(roomToInstanciate.template, Vector3.zero, roomToInstanciate.template.transform.rotation);
+            currentRoom = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation, roomContainer.transform);
     }
 
     private void InstanciateRestRoom()
     {
         if (currentRoom != null)
         {
-            currentRoom = Instantiate(restRoom.template,
+            currentRoom = Instantiate(restRoom.m_template,
                 currentRoom.transform.Find("Exit").position,
-                restRoom.template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation);
+                restRoom.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
+                roomContainer.transform);
         }
         else
-            currentRoom = Instantiate(restRoom.template, Vector3.zero, restRoom.template.transform.rotation);
+            currentRoom = Instantiate(restRoom.m_template, Vector3.zero, restRoom.m_template.transform.rotation, roomContainer.transform);
     }
 }

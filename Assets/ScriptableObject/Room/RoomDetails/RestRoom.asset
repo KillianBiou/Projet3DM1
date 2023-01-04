@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844424a2646ccb4590c8ec38a4f4550, type: 3}
   m_Name: RestRoom
   m_EditorClassIdentifier: 
-  roomSize: {x: 6, y: 2.5}
-  template: {fileID: 6832576298794340552, guid: e159bc749063076408ff5d108872ea95,
-    type: 3}
+  m_name: RestRoom
+  m_template: {fileID: 0}
