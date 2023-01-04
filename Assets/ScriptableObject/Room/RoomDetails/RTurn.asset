@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RTurn
   m_EditorClassIdentifier: 
   m_name: Rturn
+  m_maxLevel: 5
   m_template: {fileID: 5294903644910512517, guid: fcdabd99cff5abb45a809b3fa472474d,
     type: 3}
   m_timer: 5

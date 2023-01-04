@@ -59,15 +59,14 @@ public class SpikeTrap : MonoBehaviour
 
     public void HitEffect(Player player)
     {
-        Debug.Log("Hit");
+        player.TakeDamage(damage);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (currentState == SpikeState.EXTENDED && other.CompareTag("Player"))
         {
-            Debug.Log("Trigger  * 2");
-            HitEffect(other.GetComponent<Player>());
+            HitEffect(other.GetComponentInParent<Player>());
         }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Classic
   m_EditorClassIdentifier: 
   m_name: Classic
+  m_maxLevel: 2
   m_template: {fileID: 2085490306352845665, guid: 391cb0c4fcb3c0d4c902dbc5e305483b,
     type: 3}
   m_timer: 5
