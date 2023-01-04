@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: LTurn
   m_EditorClassIdentifier: 
   m_name: LTurn
-  m_template: {fileID: 0}
+  m_template: {fileID: 8602362672818590042, guid: 106678c089d8e3f458b0a78192e61187,
+    type: 3}
+  m_timer: 5

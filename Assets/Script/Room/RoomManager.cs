@@ -16,6 +16,11 @@ public class RoomManager : MonoBehaviour
     private void Start()
     {
         roomContainer = GameObject.Find("RoomContainer");
+
+        InstanciateRoom(roomDeck.GetRoom("Classic"));
+        InstanciateRestRoom();
+        InstanciateRoom(roomDeck.GetRoom("Blockout"));
+        InstanciateRestRoom();
     }
 
     private void Update()
@@ -53,9 +58,13 @@ public class RoomManager : MonoBehaviour
                 currentRoom.transform.Find("Exit").position,
                 roomToInstanciate.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
                 roomContainer.transform);
+            currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
         }
         else
+        {
             currentRoom = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation, roomContainer.transform);
+            currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
+        }
     }
 
     private void InstanciateRestRoom()
@@ -68,6 +77,8 @@ public class RoomManager : MonoBehaviour
                 roomContainer.transform);
         }
         else
+        {
             currentRoom = Instantiate(restRoom.m_template, Vector3.zero, restRoom.m_template.transform.rotation, roomContainer.transform);
+        }
     }
 }

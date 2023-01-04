@@ -1,0 +1,59 @@
+using UnityEngine;
+
+public class RoomData : MonoBehaviour
+{
+    public RoomScriptableObject template { get; set; }
+    public RoomPhase hasStarted { get; set; }
+
+    private float currentClock = 0f;
+
+    private void Update()
+    {
+        if (hasStarted == RoomPhase.STARTED)
+        {
+            currentClock += Time.deltaTime;
+            if (currentClock >= template.m_timer)
+            {
+                ChangeRoomPhase(RoomPhase.ENDED);
+            }
+
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collision");
+        if (other.CompareTag("Player"))
+        {
+
+            ChangeRoomPhase(RoomPhase.STARTED);
+        }
+    }
+
+    private void ChangeRoomPhase(RoomPhase phase)
+    {
+        switch(phase)
+        {
+            case RoomPhase.STARTED:
+                hasStarted = RoomPhase.STARTED;
+                GameContext.StartARoom();
+                GetComponent<BoxCollider>().isTrigger = false;
+                GetComponent<BoxCollider>().center = Vector3.zero + Vector3.up * 5;
+                foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+                {
+                    mr.material.color = Color.red;
+                }
+                break;
+
+            case RoomPhase.ENDED:
+                hasStarted = RoomPhase.ENDED;
+                GameContext.EndARoom();
+                Destroy(transform.Find("Exit").GetComponent<BoxCollider>());
+                foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+                {
+                    mr.material.color = Color.white;
+                }
+                break;
+        }
+    }
+}

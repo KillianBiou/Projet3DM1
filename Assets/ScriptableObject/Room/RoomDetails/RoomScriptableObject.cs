@@ -5,4 +5,5 @@ public class RoomScriptableObject : ScriptableObject
 {
     public string m_name;
     public GameObject m_template;
+    public float m_timer;
 }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Blockout
   m_EditorClassIdentifier: 
   m_name: Blockout
-  m_template: {fileID: 0}
+  m_template: {fileID: 3441887945754035474, guid: 845eb33fc2704534891baf66c7f007f6,
+    type: 3}
+  m_timer: 5
