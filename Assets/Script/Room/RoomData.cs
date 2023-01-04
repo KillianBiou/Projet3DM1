@@ -4,8 +4,22 @@ public class RoomData : MonoBehaviour
 {
     public RoomScriptableObject template { get; set; }
     public RoomPhase hasStarted { get; set; }
+    public int level { get; set; }
 
     private float currentClock = 0f;
+
+    private void Start()
+    {
+        Debug.Log("Lvl : " + level);
+        for (int i = template.m_maxLevel; i > level; i--)
+        {
+            Transform trapContainer = transform.Find("Trap").Find("LVL" + i);
+            if(trapContainer)
+            {
+                trapContainer.gameObject.SetActive(false);
+            }
+        }
+    }
 
     private void Update()
     {
