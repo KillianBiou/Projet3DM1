@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 446983862}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarrelSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4577309797769739228}
   - component: {fileID: 7854476367442023431}
   - component: {fileID: 5353439401448437504}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel_Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 2331965411914595668}
   - component: {fileID: 4047749963013297430}
   - component: {fileID: 6353226156653223464}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel_Opening02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 941883780257114969}
   - component: {fileID: 978887885050845666}
   - component: {fileID: 5963080501281675234}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel_Opening01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 6951107739169283108}
   - component: {fileID: 7493412348877551423}
   - component: {fileID: 1561978971}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarrelTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

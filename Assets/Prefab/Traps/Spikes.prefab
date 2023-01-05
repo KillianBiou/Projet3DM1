@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6651465329315058698}
   - component: {fileID: 8243016713869954099}
   - component: {fileID: 827657654486847938}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pic_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7152295384866973432}
   - component: {fileID: 8446962796414214768}
   - component: {fileID: 5867554799897791163}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pic_Trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 5867554800046757286}
   - component: {fileID: 5867554800046757285}
   - component: {fileID: 5867554800046757284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

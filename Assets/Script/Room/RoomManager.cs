@@ -57,6 +57,7 @@ public class RoomManager : MonoBehaviour
                 roomContainer.transform);
             currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
             currentRoom.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
+            currentRoom.GetComponent<RoomData>().level = 2;
         }
         else
         {
