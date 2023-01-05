@@ -1,15 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
-public enum TrapState
-{
-    COOLDOWN,
-    UP
-}
-
-public class SpikeTrap : MonoBehaviour
+public class BarrelTrap : MonoBehaviour
 {
     #region Parameters
 
@@ -19,32 +12,42 @@ public class SpikeTrap : MonoBehaviour
     private float upTime;
     [SerializeField]
     private int damage;
+    [SerializeField]
+    private float explosionRadius;
+    [SerializeField]
+    private float tickingOffSeconds;
 
     #endregion
     #region Internal Parameters
 
+    [SerializeField]
+    private GameObject barrelPrefab;
+
     private TrapState currentState = TrapState.COOLDOWN;
     private float currentTimer;
     private Animator animator;
+    private Transform barrelOrigin;
 
     #endregion
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        barrelOrigin = transform.Find("BarrelSpawn");
     }
 
     private void Update()
     {
-        if(currentState == TrapState.COOLDOWN)
+        if (currentState == TrapState.COOLDOWN)
         {
             currentTimer += Time.deltaTime;
-            if(currentTimer > cooldown)
+            if (currentTimer > cooldown)
             {
                 currentTimer = 0;
                 currentState = TrapState.UP;
-                animator.SetTrigger("Extend");
-                animator.ResetTrigger("Retract");
+                animator.SetTrigger("OpenTrigger");
+                animator.ResetTrigger("CloseTrigger");
+                Attack();
             }
         }
 
@@ -55,22 +58,17 @@ public class SpikeTrap : MonoBehaviour
             {
                 currentTimer = 0;
                 currentState = TrapState.COOLDOWN;
-                animator.SetTrigger("Retract");
-                animator.ResetTrigger("Extend");
+                animator.SetTrigger("CloseTrigger");
+                animator.ResetTrigger("OpenTrigger");
             }
         }
     }
 
-    public void HitEffect(Player player)
+    public void Attack()
     {
-        player.TakeDamage(damage);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (currentState == TrapState.UP && other.CompareTag("Player"))
-        {
-            HitEffect(other.GetComponentInParent<Player>());
-        }
+        //player.TakeDamage(damage);
+        Debug.Log("Spawn Barrel");
+        Barrel barrel = Instantiate(barrelPrefab, barrelOrigin.position, barrelPrefab.transform.rotation).GetComponent<Barrel>();
+        barrel.Initialize(explosionRadius, damage, tickingOffSeconds);
     }
 }

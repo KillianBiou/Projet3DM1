@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
         if (!isInvulnerable)
         {
             hp -= amount;
+            Debug.Log("Took " + amount + " damage.");
             if (hp <= 0)
             {
                 Debug.Log("DEAD");
