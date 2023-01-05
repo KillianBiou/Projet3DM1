@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.5244, g: 2264.5781, b: 3287.6055, a: 1}
+  m_IndirectSpecularColor: {r: 2161.3838, g: 2265.4004, b: 3288.5469, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -552,74 +552,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7784049673353823185
+--- !u!1001 &5323810587717192355
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1986898668011301696, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
-        type: 3}
-      propertyPath: m_Height
-      value: 1.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 3699304241198241003, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382120, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_Name
       value: Scene
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8081946028500188237, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
+    - target: {fileID: 5323810588195382127, guid: 85b772d1ad8e8af4d8c420b6f9490c64,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
