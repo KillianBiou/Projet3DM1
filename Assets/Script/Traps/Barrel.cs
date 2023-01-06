@@ -37,6 +37,7 @@ public class Barrel : MonoBehaviour
             ParticleSystem.ShapeModule ps = explosion.shape;
             explosion.Play();
             gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<MeshCollider>().enabled = false;
             HitEffect();
             Destroy(this);
         }

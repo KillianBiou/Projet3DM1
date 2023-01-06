@@ -14,7 +14,7 @@ public class ElectricTrap : MonoBehaviour
     [SerializeField]
     private int damage;
     [SerializeField]
-    private float slowPercentage;
+    private Debuff slow;
 
     #endregion
     #region Internal Parameters
@@ -23,14 +23,14 @@ public class ElectricTrap : MonoBehaviour
     private TrapState currentState = TrapState.COOLDOWN;
     private float currentTimer;
     private bool hasSlowTarget = false;
-    //private Animator animator;
+    private GameObject VFXContainer;
 
     #endregion
 
     private void Start()
     {
-        //animator = GetComponent<Animator>();
         player = GameObject.FindObjectOfType<Player>();
+        VFXContainer = transform.Find("VFX").gameObject;
     }
 
     private void Update()
@@ -43,8 +43,7 @@ public class ElectricTrap : MonoBehaviour
                 currentTimer = 0;
                 currentState = TrapState.UP;
                 GetComponent<MeshRenderer>().material.color = Color.yellow;
-                //animator.SetTrigger("Extend");
-                //animator.ResetTrigger("Retract");
+                VFXContainer.SetActive(true);
             }
         }
 
@@ -55,10 +54,9 @@ public class ElectricTrap : MonoBehaviour
             {
                 currentTimer = 0;
                 currentState = TrapState.COOLDOWN;
-                GetComponent<MeshRenderer>().material.color = Color.white;
+                GetComponent<MeshRenderer>().material.color = Color.white ;
+                VFXContainer.SetActive(false);
                 RefreshSlow(false);
-                //animator.SetTrigger("Retract");
-                //animator.ResetTrigger("Extend");
             }
         }
     }
@@ -74,12 +72,12 @@ public class ElectricTrap : MonoBehaviour
         if (state && !hasSlowTarget)
         {
             hasSlowTarget = true;
-            player.GetComponent<FirstPersonController>().cumulativeSlow += slowPercentage;
+            player.GetComponent<FirstPersonController>().slowDebuff.Add(slow);
         }
         else if(!state && hasSlowTarget)
         {
             hasSlowTarget = false;
-            player.GetComponent<FirstPersonController>().cumulativeSlow -= slowPercentage;
+            player.GetComponent<FirstPersonController>().slowDebuff.Remove(slow);
         }
     }
 

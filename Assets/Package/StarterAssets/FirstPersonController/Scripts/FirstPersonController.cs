@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -17,7 +19,7 @@ namespace StarterAssets
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
 		[Tooltip("Cumulative slow applied on the player in %")]
-		public float cumulativeSlow;
+		public List<Debuff> slowDebuff;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -159,7 +161,12 @@ namespace StarterAssets
 		{
 			Rigidbody rb = GetComponent<Rigidbody>();
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = (_input.sprint ? SprintSpeed : MoveSpeed) * ( 1 - Mathf.Clamp(cumulativeSlow, 0f, 100f) / 100);
+			float targetSpeed = (_input.sprint ? SprintSpeed : MoveSpeed);
+			if(slowDebuff.Count > 0)
+			{
+				Debug.Log((1 - slowDebuff.Max(t => t.percentage) / 100f));
+				targetSpeed *= (1 - slowDebuff.Max(t => t.percentage) / 100f);
+            }
 			Debug.Log("Speed : " + targetSpeed);
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
