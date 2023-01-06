@@ -734,6 +734,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeliceTrapAnimated (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3644535189870798240, guid: 6074ad2330a5d5142ab3d87b61d949b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4168131888937484058, guid: 6074ad2330a5d5142ab3d87b61d949b5,
         type: 3}
       propertyPath: m_RootOrder
@@ -808,6 +813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HeliceTrapAnimated (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644535189870798240, guid: 6074ad2330a5d5142ab3d87b61d949b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168131888937484058, guid: 6074ad2330a5d5142ab3d87b61d949b5,
         type: 3}
@@ -1215,6 +1225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HeliceTrapAnimated (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644535189870798240, guid: 6074ad2330a5d5142ab3d87b61d949b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168131888937484058, guid: 6074ad2330a5d5142ab3d87b61d949b5,
         type: 3}
@@ -2168,6 +2183,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeliceTrapAnimated (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3644535189870798240, guid: 6074ad2330a5d5142ab3d87b61d949b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4168131888937484058, guid: 6074ad2330a5d5142ab3d87b61d949b5,
         type: 3}
       propertyPath: m_RootOrder
@@ -2402,6 +2422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HeliceTrapAnimated (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644535189870798240, guid: 6074ad2330a5d5142ab3d87b61d949b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168131888937484058, guid: 6074ad2330a5d5142ab3d87b61d949b5,
         type: 3}
