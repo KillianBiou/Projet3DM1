@@ -164,10 +164,8 @@ namespace StarterAssets
 			float targetSpeed = (_input.sprint ? SprintSpeed : MoveSpeed);
 			if(slowDebuff.Count > 0)
 			{
-				Debug.Log((1 - slowDebuff.Max(t => t.percentage) / 100f));
 				targetSpeed *= (1 - slowDebuff.Max(t => t.percentage) / 100f);
             }
-			Debug.Log("Speed : " + targetSpeed);
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

@@ -2,6 +2,7 @@ using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class ElectricTrap : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class ElectricTrap : MonoBehaviour
     private int damage;
     [SerializeField]
     private Debuff slow;
+    [SerializeField]
+    private Vector2 activatedBrightness;
+    [SerializeField]
+    private float oscillationFactor;
 
     #endregion
     #region Internal Parameters
@@ -25,12 +30,18 @@ public class ElectricTrap : MonoBehaviour
     private bool hasSlowTarget = false;
     private GameObject VFXContainer;
 
+    private float brightnessMean;
+    private Material emmisiveMaterial;
+    private Color emmisiveColor;
+
     #endregion
 
     private void Start()
     {
         player = GameObject.FindObjectOfType<Player>();
         VFXContainer = transform.Find("VFX").gameObject;
+        emmisiveMaterial = GetComponent<Renderer>().material;
+        emmisiveColor = emmisiveMaterial.GetColor("_EmissiveColor");
     }
 
     private void Update()
@@ -49,9 +60,13 @@ public class ElectricTrap : MonoBehaviour
 
         if (currentState == TrapState.UP)
         {
+            brightnessMean = (activatedBrightness.x + activatedBrightness.y) / 2;
+            emmisiveMaterial.SetColor("_EmissiveColor", emmisiveColor * (brightnessMean + (Mathf.Cos(Time.time * oscillationFactor) * brightnessMean / 2)));
+
             currentTimer += Time.deltaTime;
             if (currentTimer > upTime)
             {
+                emmisiveMaterial.SetColor("_EmissiveColor", emmisiveColor);
                 currentTimer = 0;
                 currentState = TrapState.COOLDOWN;
                 GetComponent<MeshRenderer>().material.color = Color.white ;
