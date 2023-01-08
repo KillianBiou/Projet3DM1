@@ -1,21 +1,9 @@
 fileFormatVersion: 2
-guid: 44377553209814141a6d11c6dab6bc89
+guid: f5a3298fc13bc9545bff4c3a9f7a48f1
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Base
-    second: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e,
-      type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Helice
-    second: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e,
-      type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
