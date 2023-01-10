@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        hp += amount;
+        Debug.Log("Healed " + amount + " HP.");
+        if (hp >= maxHp)
+        {
+            hp = maxHp;
+        }
+    }
+
     public void FadeInvulnerable()
     {
         if (isInvulnerable)
@@ -56,6 +67,19 @@ public class Player : MonoBehaviour
             {
                 isInvulnerable = false;
             }
+        }
+    }
+
+    public void ProcessShopItem(Modifier modifier)
+    {
+        switch(modifier.type)
+        {
+            case ModifierType.MOVEMENT_SPEED:
+                GetComponent<FirstPersonController>().moveSpeedBuff.Add(modifier);
+                break;
+            case ModifierType.HP:
+                Heal(modifier.value);
+                break;
         }
     }
 }

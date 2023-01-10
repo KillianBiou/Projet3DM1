@@ -12,16 +12,21 @@ public class ShopItem : MonoBehaviour
     [SerializeField]
     private string itemDescription = "Placeholder";
 
+    [SerializeField]
+    private Modifier effect;
+
     #endregion
     #region Internal Parameters
 
     private GameObject UICanvas;
+    private Player player;
 
     #endregion
 
     private void Start()
     {
         UICanvas = transform.GetChild(0).gameObject;
+        player = GameObject.FindObjectOfType<Player>();
 
         UICanvas.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = itemName;
         UICanvas.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemDescription;
@@ -41,5 +46,6 @@ public class ShopItem : MonoBehaviour
     public void BuyItem()
     {
         Debug.Log("Bought : " + itemName);
+        player.ProcessShopItem(effect);
     }
 }

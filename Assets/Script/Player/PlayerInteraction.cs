@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private Camera playerCamera;
     private ShopItem currentItemLook;
+    private bool canInteract = true;
 
     #endregion
 
@@ -26,16 +28,19 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        RaycastHit raycastHit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out raycastHit, 10, 1 << 6))
+        if (canInteract)
         {
-            SetNewTargetLook(raycastHit.transform.GetComponent<ShopItem>());
-        }
-        else
-        {
-            if(currentItemLook)
-                currentItemLook.SetShopUI(false);
-            currentItemLook = null;
+            RaycastHit raycastHit;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out raycastHit, 10, 1 << 6))
+            {
+                SetNewTargetLook(raycastHit.transform.GetComponent<ShopItem>());
+            }
+            else
+            {
+                if (currentItemLook)
+                    currentItemLook.SetShopUI(false);
+                currentItemLook = null;
+            }
         }
     }
 
@@ -50,9 +55,14 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void SetCanInteract(bool canInteract)
+    {
+        this.canInteract = canInteract;
+    }
+
     public void OnInteraction(InputValue value)
     {
-        if(currentItemLook)
+        if(canInteract && currentItemLook)
             currentItemLook.BuyItem();
     }
 }

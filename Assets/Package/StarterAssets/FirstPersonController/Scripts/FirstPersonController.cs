@@ -18,9 +18,11 @@ namespace StarterAssets
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
-		[Tooltip("Cumulative slow applied on the player in %")]
+		[Tooltip("List of slow applied on the player in % (Only strongest apply)")]
 		public List<Modifier> slowDebuff;
-		[Tooltip("Rotation speed of the character")]
+        [Tooltip("List of speed buff applied on the player in % (Only strongest apply)")]
+        public List<Modifier> moveSpeedBuff;
+        [Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
@@ -167,11 +169,16 @@ namespace StarterAssets
 				targetSpeed *= (1 - slowDebuff.Max(t => t.value) / 100f);
             }
 
-			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+            if (moveSpeedBuff.Count > 0)
+            {
+                targetSpeed += targetSpeed * (moveSpeedBuff.Max(t => t.value) / 100f);
+            }
 
-			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+
+            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+            // if there is no input, set the target speed to 0
+            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
