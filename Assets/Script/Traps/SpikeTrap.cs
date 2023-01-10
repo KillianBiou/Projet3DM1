@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-public enum SpikeState
+public enum TrapState
 {
     COOLDOWN,
-    EXTENDED
+    UP,
+    CAN_BE_USED
 }
 
 public class SpikeTrap : MonoBehaviour
 {
-    [SerializeField]
-    private OffensiveTrapScriptableObject template;
+    #region Parameters
 
     [SerializeField]
     private float cooldown;
@@ -21,9 +21,14 @@ public class SpikeTrap : MonoBehaviour
     [SerializeField]
     private int damage;
 
-    private SpikeState currentState = SpikeState.COOLDOWN;
+    #endregion
+    #region Internal Parameters
+
+    private TrapState currentState = TrapState.COOLDOWN;
     private float currentTimer;
     private Animator animator;
+
+    #endregion
 
     private void Start()
     {
@@ -32,25 +37,25 @@ public class SpikeTrap : MonoBehaviour
 
     private void Update()
     {
-        if(currentState == SpikeState.COOLDOWN)
+        if(currentState == TrapState.COOLDOWN)
         {
             currentTimer += Time.deltaTime;
             if(currentTimer > cooldown)
             {
                 currentTimer = 0;
-                currentState = SpikeState.EXTENDED;
+                currentState = TrapState.UP;
                 animator.SetTrigger("Extend");
                 animator.ResetTrigger("Retract");
             }
         }
 
-        if (currentState == SpikeState.EXTENDED)
+        if (currentState == TrapState.UP)
         {
             currentTimer += Time.deltaTime;
             if (currentTimer > upTime)
             {
                 currentTimer = 0;
-                currentState = SpikeState.COOLDOWN;
+                currentState = TrapState.COOLDOWN;
                 animator.SetTrigger("Retract");
                 animator.ResetTrigger("Extend");
             }
@@ -64,7 +69,7 @@ public class SpikeTrap : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (currentState == SpikeState.EXTENDED && other.CompareTag("Player"))
+        if (currentState == TrapState.UP && other.CompareTag("Player"))
         {
             HitEffect(other.GetComponentInParent<Player>());
         }

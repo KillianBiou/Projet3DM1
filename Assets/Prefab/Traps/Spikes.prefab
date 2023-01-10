@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6651465329315058698}
   - component: {fileID: 8243016713869954099}
   - component: {fileID: 827657654486847938}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pic_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12439647747672070}
-  m_Mesh: {fileID: -1282549790379987111, guid: 1c085163a2ad5934391357439db17b08, type: 3}
+  m_Mesh: {fileID: -1282549790379987111, guid: 27927defd77274f44bbb42da054d0c74, type: 3}
 --- !u!23 &827657654486847938
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7152295384866973432}
   - component: {fileID: 8446962796414214768}
   - component: {fileID: 5867554799897791163}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pic_Trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4540609087300347702}
-  m_Mesh: {fileID: -3214911662211311442, guid: 1c085163a2ad5934391357439db17b08, type: 3}
+  m_Mesh: {fileID: -3214911662211311442, guid: 27927defd77274f44bbb42da054d0c74, type: 3}
 --- !u!23 &8446962796414214768
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 5867554800046757286}
   - component: {fileID: 5867554800046757285}
   - component: {fileID: 5867554800046757284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f8aa370de706b4f848777ba1799ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  template: {fileID: 0}
   cooldown: 5
   upTime: 1
   damage: 5
