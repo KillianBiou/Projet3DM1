@@ -11,6 +11,11 @@ public class LookAtCamera : MonoBehaviour
     [SerializeField]
     private float scalingFactor;
 
+    private void Start()
+    {
+        _camera = GameObject.Find("GameMaster").GetComponent<Camera>();
+    }
+
     private void Update()
     {
         transform.LookAt(_camera.transform);

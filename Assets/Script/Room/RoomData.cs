@@ -36,7 +36,6 @@ public class RoomData : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
         if (other.CompareTag("Player"))
         {
 
@@ -44,15 +43,15 @@ public class RoomData : MonoBehaviour
         }
     }
 
-    private void ChangeRoomPhase(RoomPhase phase)
+    public void ChangeRoomPhase(RoomPhase phase)
     {
         switch(phase)
         {
             case RoomPhase.STARTED:
                 hasStarted = RoomPhase.STARTED;
                 GameContext.StartARoom();
-                GetComponent<BoxCollider>().isTrigger = false;
-                GetComponent<BoxCollider>().center = Vector3.zero + Vector3.up * 5;
+                transform.Find("Entry").GetComponent<BoxCollider>().isTrigger = false;
+                transform.Find("Entry").GetComponent<BoxCollider>().center = Vector3.zero + Vector3.up * 5;
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
                 {
                     mr.material.color = Color.red;

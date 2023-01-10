@@ -19,19 +19,6 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<Player>().TakeDamage(damage);
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(GetComponent<Rigidbody>());
-        }
-    }
-
     public IEnumerator ScheduleDestruction(float seconds)
     {
         yield return new WaitForSeconds(seconds);

@@ -40,9 +40,9 @@ public class RoomManager : MonoBehaviour
             InstanciateRoom(roomDeck.GetRoom("Tower"));
             InstanciateRestRoom();
         }
-        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("Blockout"))
+        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("TestRoom"))
         {
-            InstanciateRoom(roomDeck.GetRoom("Blockout"));
+            InstanciateRoom(roomDeck.GetRoom("TestRoom"));
             InstanciateRestRoom();
         }
     }
@@ -51,9 +51,13 @@ public class RoomManager : MonoBehaviour
     {
         if (currentRoom != null)
         {
+            Quaternion rotation = roomToInstanciate.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation;
+            if (roomToInstanciate.m_template.transform.Find("Entry"))
+                rotation *= roomToInstanciate.m_template.transform.Find("Entry").rotation;
+
             currentRoom = Instantiate(roomToInstanciate.m_template,
                 currentRoom.transform.Find("Exit").position,
-                roomToInstanciate.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
+                rotation,
                 roomContainer.transform);
             currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
             currentRoom.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
