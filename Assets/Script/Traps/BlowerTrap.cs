@@ -66,8 +66,10 @@ public class BlowerTrap : MonoBehaviour
         RaycastHit hit;
         if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity))
         {
+            Debug.Log("Hit");
             if (hit.transform.CompareTag("Player"))
             {
+                Debug.Log("Hit Player");
                 HitEffect(hit.transform.GetComponent<Player>());
             }
         }
@@ -138,22 +140,4 @@ public class BlowerTrap : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = true;
     }
 
-    void OnDrawGizmos()
-    {
-        RaycastHit hit;
-
-        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity);
-        Gizmos.DrawWireCube(transform.position + trapDirection.forward * 1, transform.lossyScale * 1.5f);
-        if (isHit)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, trapDirection.forward * hit.distance);
-            Gizmos.DrawWireCube(transform.position + trapDirection.forward * hit.distance, transform.lossyScale * 1.5f);
-        }
-        else
-        {   
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, trapDirection.forward * 25);
-        }
-    }
 }
