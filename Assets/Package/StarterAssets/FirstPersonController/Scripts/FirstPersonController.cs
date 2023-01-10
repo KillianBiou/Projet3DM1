@@ -19,7 +19,7 @@ namespace StarterAssets
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
 		[Tooltip("Cumulative slow applied on the player in %")]
-		public List<Debuff> slowDebuff;
+		public List<Modifier> slowDebuff;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -164,7 +164,7 @@ namespace StarterAssets
 			float targetSpeed = (_input.sprint ? SprintSpeed : MoveSpeed);
 			if(slowDebuff.Count > 0)
 			{
-				targetSpeed *= (1 - slowDebuff.Max(t => t.percentage) / 100f);
+				targetSpeed *= (1 - slowDebuff.Max(t => t.value) / 100f);
             }
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon

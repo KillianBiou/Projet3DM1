@@ -150,8 +150,8 @@ MonoBehaviour:
   upTime: 2
   damage: 5
   slow:
-    debuff_type: 0
-    percentage: 90
+    modifier: 0
+    value: 90
   activatedBrightness: {x: 100, y: 250}
   oscillationFactor: 15
 --- !u!1001 &1541808063416530314

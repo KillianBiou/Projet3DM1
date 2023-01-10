@@ -15,7 +15,7 @@ public class ElectricTrap : MonoBehaviour
     [SerializeField]
     private int damage;
     [SerializeField]
-    private Debuff slow;
+    private Modifier slow;
     [SerializeField]
     private Vector2 activatedBrightness;
     [SerializeField]

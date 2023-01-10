@@ -5,8 +5,8 @@ public enum ModifierType{
 }
 
 [Serializable]
-public struct Debuff
+public struct Modifier
 {
-    public DebuffType debuff_type;
-    public int percentage;
+    public ModifierType modifier;
+    public int value;
 }
