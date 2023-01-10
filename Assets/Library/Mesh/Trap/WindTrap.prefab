@@ -283,6 +283,7 @@ MonoBehaviour:
   turbo: 0
   turboMulti: 1.5
   activationDuration: 5
+  activationKey: 49
   normalColor: {r: 0.09620404, g: 1, b: 0, a: 0}
   cooldownColor: {r: 1, g: 0, b: 0, a: 0}
   firingColor: {r: 0.963735, g: 1, b: 0, a: 0}

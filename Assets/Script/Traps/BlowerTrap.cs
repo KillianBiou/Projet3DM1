@@ -23,6 +23,8 @@ public class BlowerTrap : MonoBehaviour
     private float turboMulti;
     [SerializeField] 
     private float activationDuration;
+    [SerializeField]
+    private KeyCode activationKey;
 
     [SerializeField]
     private Color normalColor;
@@ -81,6 +83,10 @@ public class BlowerTrap : MonoBehaviour
                 clock = 0f;
             }
         }
+        else if(currentState == TrapState.CAN_BE_USED && Input.GetKeyDown(activationKey))
+        {
+            ChangeTrapState(TrapState.UP);
+        }
         else if(currentState == TrapState.UP)
         {
             clock += Time.deltaTime;
@@ -120,15 +126,8 @@ public class BlowerTrap : MonoBehaviour
             {
                 renderer.material.SetColor("_EmissiveColor", normalColor * emissivePower);
             }
-            StartCoroutine(FakeInput());
         }
         currentState = state;
-    }
-
-    private IEnumerator FakeInput()
-    {
-        yield return new WaitForSeconds(3);
-        ChangeTrapState(TrapState.UP);
     }
 
     private void HitEffect(Player player)
