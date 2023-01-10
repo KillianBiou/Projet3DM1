@@ -112,7 +112,6 @@ namespace StarterAssets
 
         private void Update()
         {
-            BlowerTrap.HashBlown = false;
             JumpAndGravity();
             GroundedCheck();
             Move();

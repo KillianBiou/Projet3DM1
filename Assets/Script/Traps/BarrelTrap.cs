@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BarrelTrap : MonoBehaviour
@@ -17,6 +18,13 @@ public class BarrelTrap : MonoBehaviour
     [SerializeField]
     private float tickingOffSeconds;
 
+    [SerializeField]
+    private Color cooldownColor;
+    [SerializeField]
+    private Color firingColor;
+    [SerializeField]
+    private float emissivePower;
+
     #endregion
     #region Internal Parameters
 
@@ -27,6 +35,7 @@ public class BarrelTrap : MonoBehaviour
     private float currentTimer;
     private Animator animator;
     private Transform barrelOrigin;
+    private List<Renderer> emmisiveRenderers = new List<Renderer>();
 
     #endregion
 
@@ -34,6 +43,7 @@ public class BarrelTrap : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         barrelOrigin = transform.Find("BarrelSpawn");
+        emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
     }
 
     private void Update()
@@ -44,10 +54,8 @@ public class BarrelTrap : MonoBehaviour
             if (currentTimer > cooldown)
             {
                 currentTimer = 0;
-                currentState = TrapState.UP;
-                animator.SetTrigger("OpenTrigger");
-                animator.ResetTrigger("CloseTrigger");
                 Attack();
+                ChangeTrapState(TrapState.UP);
             }
         }
 
@@ -57,17 +65,36 @@ public class BarrelTrap : MonoBehaviour
             if (currentTimer > upTime)
             {
                 currentTimer = 0;
-                currentState = TrapState.COOLDOWN;
-                animator.SetTrigger("CloseTrigger");
-                animator.ResetTrigger("OpenTrigger");
+                ChangeTrapState(TrapState.COOLDOWN);
             }
         }
     }
 
+    private void ChangeTrapState(TrapState state)
+    {
+        if (state == TrapState.UP)
+        {
+            animator.SetTrigger("OpenTrigger");
+            animator.ResetTrigger("CloseTrigger");
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", firingColor * emissivePower);
+            }
+        }
+        else
+        {
+            animator.SetTrigger("CloseTrigger");
+            animator.ResetTrigger("OpenTrigger");
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+            }
+        }
+        currentState = state;
+    }
+
     public void Attack()
     {
-        //player.TakeDamage(damage);
-        Debug.Log("Spawn Barrel");
         Barrel barrel = Instantiate(barrelPrefab, barrelOrigin.position, barrelPrefab.transform.rotation).GetComponent<Barrel>();
         barrel.Initialize(explosionRadius, damage, tickingOffSeconds);
     }

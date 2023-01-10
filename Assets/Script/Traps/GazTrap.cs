@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GazTrap : MonoBehaviour
@@ -13,18 +14,32 @@ public class GazTrap : MonoBehaviour
     [SerializeField]
     private int damage;
 
+    [SerializeField]
+    private Color cooldownColor;
+    [SerializeField]
+    private Color firingColor;
+    [SerializeField]
+    private float emissivePower;
+
     #endregion
     #region Internal Parameters
 
     private TrapState currentState = TrapState.COOLDOWN;
     private float currentTimer;
     private List<ParticleSystem> gazParticlesSystems = new List<ParticleSystem>();
+    private List<Renderer> emmisiveRenderers = new List<Renderer>();
 
     #endregion
 
     private void Start()
     {
         gazParticlesSystems.AddRange(gameObject.GetComponentsInChildren<ParticleSystem>());
+        emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
+
+        foreach (Renderer renderer in emmisiveRenderers)
+        {
+            renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+        }
     }
 
     private void Update()
@@ -35,8 +50,7 @@ public class GazTrap : MonoBehaviour
             if (currentTimer > cooldown)
             {
                 currentTimer = 0;
-                currentState = TrapState.UP;
-                ToggleParticles();
+                ChangeTrapState(TrapState.UP);
             }
         }
 
@@ -46,8 +60,7 @@ public class GazTrap : MonoBehaviour
             if (currentTimer > upTime)
             {
                 currentTimer = 0;
-                currentState = TrapState.COOLDOWN;
-                ToggleParticles();
+                ChangeTrapState(TrapState.COOLDOWN);
             }
         }
     }
@@ -55,6 +68,27 @@ public class GazTrap : MonoBehaviour
     public void HitEffect(Player player)
     {
         player.TakeDamage(damage);
+    }
+
+    private void ChangeTrapState(TrapState state)
+    {
+        if (state == TrapState.UP)
+        {
+            ToggleParticles(state);
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", firingColor * emissivePower);
+            }
+        }
+        else
+        {
+            ToggleParticles(state);
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+            }
+        }
+        currentState = state;
     }
 
     private void OnTriggerStay(Collider other)
@@ -65,9 +99,9 @@ public class GazTrap : MonoBehaviour
         }
     }
 
-    private void ToggleParticles()
+    private void ToggleParticles(TrapState state)
     {
-        if(currentState == TrapState.UP)
+        if(state == TrapState.UP)
         {
             foreach(ParticleSystem particle in gazParticlesSystems)
             {

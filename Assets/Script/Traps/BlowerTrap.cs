@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,15 +19,31 @@ public class BlowerTrap : MonoBehaviour
 
     [SerializeField]    
     private bool turbo;
+    [SerializeField]
+    private float turboMulti;
+    [SerializeField] 
+    private float activationDuration;
+
+    [SerializeField]
+    private Color normalColor;
+    [SerializeField]
+    private Color cooldownColor;
+    [SerializeField]
+    private Color firingColor;
+    [SerializeField]
+    private float emissivePower;
+
+    [SerializeField]
+    private float cooldown;
+
+    private float clock;
 
     private BoxCollider trapCollider;
     private Transform trapDirection;
 
-    #endregion
+    private TrapState currentState = TrapState.COOLDOWN;
 
-    #region Static Parameters
-    
-    public static bool HashBlown = false;
+    private List<Renderer> emmisiveRenderers = new List<Renderer>();
 
     #endregion
 
@@ -34,41 +51,91 @@ public class BlowerTrap : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         trapCollider = GetComponentInChildren<BoxCollider>();
+        emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
+
+        foreach (Renderer renderer in emmisiveRenderers)
+        {
+            renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+        }
+
         trapDirection = transform.Find("BlowerDirection");
     }
 
     private void Update()
     {
-        if (true)
+        RaycastHit hit;
+        if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity))
         {
-            RaycastHit hit;
-            if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity))
+            if (hit.transform.CompareTag("Player"))
             {
-                if (hit.transform.CompareTag("Player"))
-                {
-                    HitEffect(hit.transform.GetComponent<Player>());
-                }
+                HitEffect(hit.transform.GetComponent<Player>());
             }
         }
 
-        if (turbo)
+        if(currentState == TrapState.COOLDOWN)
         {
-            animator.speed = 3;
+            clock += Time.deltaTime;
+            if (clock >= cooldown)
+            {
+                ChangeTrapState(TrapState.CAN_BE_USED);
+                clock = 0f;
+            }
+        }
+        else if(currentState == TrapState.UP)
+        {
+            clock += Time.deltaTime;
+            if (clock >= activationDuration)
+            {
+                ChangeTrapState(TrapState.COOLDOWN);
+                clock = 0f;
+            }
+        }
+    }
 
+    private void ChangeTrapState(TrapState state)
+    {
+        if (state == TrapState.UP)
+        {
+            animator.speed = turboMulti;
+            turbo = true;
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", firingColor * emissivePower);
+            }
+        }
+        else if(state == TrapState.COOLDOWN)
+        {
+            turbo = false;
+            animator.speed = 1;
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+            }
         }
         else
         {
+            turbo = false;
             animator.speed = 1;
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", normalColor * emissivePower);
+            }
+            StartCoroutine(FakeInput());
         }
+        currentState = state;
+    }
+
+    private IEnumerator FakeInput()
+    {
+        yield return new WaitForSeconds(3);
+        ChangeTrapState(TrapState.UP);
     }
 
     private void HitEffect(Player player)
     {
-        Debug.Log("In the way");
         player.GetComponent<CharacterController>().enabled = false;
-        player.transform.position += (trapDirection.forward * (blowerForce * (turbo ? 3 : 1)) * Time.deltaTime);
+        player.transform.position += (trapDirection.forward * (blowerForce * (turbo ? turboMulti : 1)) * Time.deltaTime);
         player.GetComponent<CharacterController>().enabled = true;
-        HashBlown = true;
     }
 
     void OnDrawGizmos()

@@ -1,6 +1,6 @@
 using System;
 
-public enum DebuffType{
+public enum ModifierType{
     MOVEMENT_SPEED
 }
 

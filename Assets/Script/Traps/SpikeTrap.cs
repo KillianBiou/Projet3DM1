@@ -6,7 +6,8 @@ using UnityEngine;
 public enum TrapState
 {
     COOLDOWN,
-    UP
+    UP,
+    CAN_BE_USED
 }
 
 public class SpikeTrap : MonoBehaviour
