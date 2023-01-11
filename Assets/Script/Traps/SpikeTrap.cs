@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -21,9 +22,17 @@ public class SpikeTrap : MonoBehaviour
     [SerializeField]
     private int damage;
 
+    [SerializeField]
+    private Color cooldownColor;
+    [SerializeField]
+    private Color firingColor;
+    [SerializeField]
+    private float emissivePower;
+
     #endregion
     #region Internal Parameters
 
+    private List<Renderer> emmisiveRenderers = new List<Renderer>();
     private TrapState currentState = TrapState.COOLDOWN;
     private float currentTimer;
     private Animator animator;
@@ -33,6 +42,11 @@ public class SpikeTrap : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        foreach (Renderer renderer in emmisiveRenderers)
+        {
+            renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+        }
     }
 
     private void Update()
@@ -44,8 +58,7 @@ public class SpikeTrap : MonoBehaviour
             {
                 currentTimer = 0;
                 currentState = TrapState.UP;
-                animator.SetTrigger("Extend");
-                animator.ResetTrigger("Retract");
+                ChangeTrapState(TrapState.UP);
             }
         }
 
@@ -56,10 +69,33 @@ public class SpikeTrap : MonoBehaviour
             {
                 currentTimer = 0;
                 currentState = TrapState.COOLDOWN;
-                animator.SetTrigger("Retract");
-                animator.ResetTrigger("Extend");
+                ChangeTrapState(TrapState.COOLDOWN);
             }
         }
+    }
+
+    private void ChangeTrapState(TrapState state)
+    {
+        emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
+        if (state == TrapState.COOLDOWN)
+        {
+            animator.SetTrigger("Retract");
+            animator.ResetTrigger("Extend");
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
+            }
+        }
+        else
+        {
+            animator.SetTrigger("Extend");
+            animator.ResetTrigger("Retract");
+            foreach (Renderer renderer in emmisiveRenderers)
+            {
+                renderer.material.SetColor("_EmissiveColor", firingColor * emissivePower);
+            }
+        }
+        currentState = state;
     }
 
     public void HitEffect(Player player)
