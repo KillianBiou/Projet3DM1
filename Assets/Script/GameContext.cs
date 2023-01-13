@@ -1,11 +1,10 @@
 using FishNet.Object;
-using FishNet.Object.Synchronizing;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum GamePhase
 {
+    MENU,
     REST,
     ROOM
 }
@@ -21,31 +20,80 @@ public class GameContext : NetworkBehaviour
 {
     public static GameContext instance;
 
-    [SyncVar]
-    private GamePhase gamePhase;
+    private GamePhase gamePhase = GamePhase.MENU;
+    private RoomManager roomManager;
 
-    [SyncVar]
     public GameObject playerObject;
+    public GameObject gameMasterObject;
 
-    private void Start()
+    public void Start()
     {
         instance = this;
+        roomManager = GetComponent<RoomManager>();
     }
 
-    public static void SetPlayer(GameObject player)
+    public void StartGame()
+    {
+        gamePhase = GamePhase.REST;
+
+        roomManager.enabled = true;
+
+        playerObject.GetComponent<Player>().StartGame();
+        gameMasterObject.GetComponent<GameMaster>().StartGame();
+    }
+
+    public void SetPlayer(GameObject player)
     {
         instance.playerObject = player;
+        if (gameMasterObject)
+            StartGame();
     }
 
-    public static void StartARoom()
+    public void SetGameMaster(GameObject gamemaster)
     {
-        instance.gamePhase = GamePhase.ROOM;
-        instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(false);
+        instance.gameMasterObject = gamemaster;
+        if (playerObject)
+            StartGame();
     }
 
-    public static void EndARoom()
+    [ServerRpc(RequireOwnership = false)]
+    public void StartARoom(float challengeTimer)
     {
-        instance.gamePhase = GamePhase.REST;
-        instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);
+        instance.SetRoomState(GamePhase.ROOM);
+        StartCoroutine(RoomClock(challengeTimer));
+    }
+
+    private IEnumerator RoomClock(float challengeTimer)
+    {
+        yield return new WaitForSeconds(challengeTimer);
+        EndARoom();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void EndARoom()
+    {
+        instance.SetRoomState(GamePhase.REST);
+    }
+
+    [ObserversRpc]
+    public void SetRoomState(GamePhase phase)
+    {
+        if(phase == GamePhase.ROOM) {
+            roomManager.GetCurrentRoom().GetComponent<RoomData>().ChangeRoomPhase(RoomPhase.STARTED);
+            if(instance.playerObject.GetComponent<PlayerInteraction>())
+                instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(false);
+        }
+        else
+        {
+            roomManager.GetCurrentRoom().GetComponent<RoomData>().ChangeRoomPhase(RoomPhase.ENDED);
+            if (instance.playerObject.GetComponent<PlayerInteraction>())
+                instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);
+        }
+        gamePhase = phase;
+    }
+
+    public GameObject GetPlayer()
+    {
+        return instance.playerObject;
     }
 }

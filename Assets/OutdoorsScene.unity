@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.5244, g: 2264.5703, b: 3287.582, a: 1}
+  m_IndirectSpecularColor: {r: 2157.9531, g: 2262.9922, b: 3287.9453, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   _ipv4BindAddress: 
   _ipv6BindAddress: 
   _port: 7770
-  _maximumClients: 4095
+  _maximumClients: 2
   _clientAddress: localhost
   _timeout: 15
 --- !u!224 &1273422097 stripped
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461958694}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57b32a974b56613489c79084fd0fd8f3, type: 3}
   m_Name: 
@@ -1378,8 +1378,8 @@ MonoBehaviour:
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 1461958700}
   _networkObjectCache: {fileID: 1461958700}
-  gamePhase: 0
   playerObject: {fileID: 0}
+  gameMasterObject: {fileID: 0}
 --- !u!114 &1461958700
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -113,18 +113,8 @@ public class RoomManager : NetworkBehaviour
         spawnedRoom.transform.SetParent(roomContainer.transform);
     }
 
-    private void InstanciateRestRoom()
+    public GameObject GetCurrentRoom()
     {
-        if (currentRoom != null)
-        {
-            currentRoom = Instantiate(restRoom.m_template,
-                currentRoom.transform.Find("Exit").position,
-                restRoom.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
-                roomContainer.transform);
-        }
-        else
-        {
-            currentRoom = Instantiate(restRoom.m_template, Vector3.zero, restRoom.m_template.transform.rotation, roomContainer.transform);
-        }
+        return currentRoom;
     }
 }

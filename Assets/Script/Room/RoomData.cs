@@ -23,15 +23,6 @@ public class RoomData : MonoBehaviour
 
     private void Update()
     {
-        if (hasStarted == RoomPhase.STARTED)
-        {
-            currentClock += Time.deltaTime;
-            if (currentClock >= template.m_timer)
-            {
-                ChangeRoomPhase(RoomPhase.ENDED);
-            }
-
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,13 +34,17 @@ public class RoomData : MonoBehaviour
         }
     }
 
+    public void TriggerStart()
+    {
+        GameContext.instance.StartARoom(10f);
+    }
+
     public void ChangeRoomPhase(RoomPhase phase)
     {
         switch(phase)
         {
             case RoomPhase.STARTED:
                 hasStarted = RoomPhase.STARTED;
-                GameContext.StartARoom();
                 transform.Find("Entry").GetComponent<BoxCollider>().isTrigger = false;
                 transform.Find("Entry").GetComponent<BoxCollider>().center = Vector3.zero + Vector3.up * 5;
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
@@ -60,7 +55,6 @@ public class RoomData : MonoBehaviour
 
             case RoomPhase.ENDED:
                 hasStarted = RoomPhase.ENDED;
-                GameContext.EndARoom();
                 Destroy(transform.Find("Exit").GetComponent<BoxCollider>());
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
                 {

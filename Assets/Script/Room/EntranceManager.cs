@@ -9,7 +9,7 @@ public class EntranceManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            GetComponentInParent<RoomData>().ChangeRoomPhase(RoomPhase.STARTED);
+            GetComponentInParent<RoomData>().TriggerStart();
         }
     }
 }

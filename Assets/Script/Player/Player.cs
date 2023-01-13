@@ -1,15 +1,18 @@
 using StarterAssets;
 using UnityEngine;
-using FishNet;
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
 public class Player : NetworkBehaviour
 {
     #region Statistics
 
     [SerializeField]
+    [SyncVar]
     private int maxHp;
+
     [SerializeField]
+    [SyncVar]
     private int hp;
 
     #endregion
@@ -23,10 +26,10 @@ public class Player : NetworkBehaviour
 
     #endregion
 
-    public override void OnStartNetwork()
+    public override void OnStartClient()
     {
-        base.OnStartNetwork();
-        GameContext.SetPlayer(gameObject);
+        base.OnStartClient();
+        GameContext.instance.SetPlayer(gameObject);
     }
 
     private void Start()
@@ -39,6 +42,17 @@ public class Player : NetworkBehaviour
         FadeInvulnerable();
     }
 
+    public void StartGame()
+    {
+        if (base.IsOwner)
+        {
+            Debug.Log("Owner of player");
+            GetComponent<CharacterController>().enabled = true;
+            GetComponent<ComponentActivator>().StartGame();
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
     public void TakeDamage(int amount)
     {
         if (!isInvulnerable)
@@ -54,6 +68,7 @@ public class Player : NetworkBehaviour
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
     public void Heal(int amount)
     {
         hp += amount;

@@ -44,5 +44,6 @@ public class ShopItem : MonoBehaviour
     public void BuyItem()
     {
         Debug.Log("Bought : " + itemName);
+        GameContext.instance.GetPlayer().GetComponent<Player>().ProcessShopItem(effect);
     }
 }
