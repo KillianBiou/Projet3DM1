@@ -1,3 +1,5 @@
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,34 +17,35 @@ public enum RoomPhase
     ENDED
 }
 
-public class GameContext : MonoBehaviour
+public class GameContext : NetworkBehaviour
 {
-    private static GamePhase gamePhase;
+    public static GameContext instance;
 
-    [SerializeField]
-    private GamePhase debugGamePhase;
+    [SyncVar]
+    private GamePhase gamePhase;
 
-    private static GameObject playerObject;
+    [SyncVar]
+    public GameObject playerObject;
 
     private void Start()
     {
-        playerObject = GameObject.FindObjectOfType<Player>().gameObject;
+        instance = this;
     }
 
-    private void Update()
+    public static void SetPlayer(GameObject player)
     {
-        debugGamePhase = gamePhase;
+        instance.playerObject = player;
     }
 
     public static void StartARoom()
     {
-        gamePhase = GamePhase.ROOM;
-        playerObject.GetComponent<PlayerInteraction>().SetCanInteract(false);
+        instance.gamePhase = GamePhase.ROOM;
+        instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(false);
     }
 
     public static void EndARoom()
     {
-        gamePhase = GamePhase.REST;
-        playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);
+        instance.gamePhase = GamePhase.REST;
+        instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);
     }
 }

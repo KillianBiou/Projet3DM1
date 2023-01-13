@@ -1,9 +1,9 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using FishNet;
+using FishNet.Object;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     #region Statistics
 
@@ -22,6 +22,12 @@ public class Player : MonoBehaviour
     private float invulnerableClock;
 
     #endregion
+
+    public override void OnStartNetwork()
+    {
+        base.OnStartNetwork();
+        GameContext.SetPlayer(gameObject);
+    }
 
     private void Start()
     {

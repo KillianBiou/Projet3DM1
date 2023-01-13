@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public enum TrapState
 {
     COOLDOWN,
     UP,
-    CAN_BE_USED
+    CAN_BE_USED,
+    RELOADING
 }
 
 public class SpikeTrap : MonoBehaviour
