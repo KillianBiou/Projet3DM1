@@ -79,6 +79,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private Animator animator;
 
 		private const float _threshold = 0.01f;
 
@@ -105,6 +106,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			animator = transform.Find("Character").GetComponentInChildren<Animator>();
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -133,9 +135,14 @@ namespace StarterAssets
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
+			bool memory = Grounded;
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
-		}
+			if (Grounded && !memory)
+			{
+                animator.SetBool("Jump", false);
+            }
+        }
 
 		private void CameraRotation()
 		{
@@ -214,7 +221,7 @@ namespace StarterAssets
 
             // move the player
             _controller.Move((inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime));
-            //rb.MovePosition((inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime));
+			animator.SetFloat("Speed", inputDirection.magnitude);
 		}
 
 		private void JumpAndGravity()
@@ -233,6 +240,7 @@ namespace StarterAssets
 				// Jump
 				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
 				{
+					animator.SetBool("Jump", true);
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 				}
