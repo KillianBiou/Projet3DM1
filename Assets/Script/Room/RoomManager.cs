@@ -94,7 +94,7 @@ public class RoomManager : NetworkBehaviour
         if (lastRoom != null)
         {
             spawned = Instantiate(restRoomSO.m_template,
-                lastRoom.transform.Find("Exit").position + /*tempfix*/lastRoom.transform.Find("Exit").transform.right * 5,
+                lastRoom.transform.Find("Exit").position,
                 restRoomSO.m_template.transform.rotation * lastRoom.transform.Find("Exit").transform.rotation);
         }
         else
