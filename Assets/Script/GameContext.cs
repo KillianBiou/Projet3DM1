@@ -80,7 +80,7 @@ public class GameContext : NetworkBehaviour
     {
         if(phase == GamePhase.ROOM) {
             roomManager.GetCurrentRoom().GetComponent<RoomData>().ChangeRoomPhase(RoomPhase.STARTED);
-            if(instance.playerObject.GetComponent<PlayerInteraction>())
+            if (instance.playerObject.GetComponent<PlayerInteraction>())
                 instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(false);
         }
         else
@@ -90,6 +90,18 @@ public class GameContext : NetworkBehaviour
                 instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);
         }
         gamePhase = phase;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ActivateTrap(KeyCode code)
+    {
+        ActivateTrapClient(code);
+    }
+
+    [ObserversRpc]
+    public void ActivateTrapClient(KeyCode code)
+    {
+        roomManager.GetCurrentRoom().GetComponent<RoomData>().ActivateTrap(code);
     }
 
     public GameObject GetPlayer()

@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 7793873385211777188}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: InteractTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   nbShot: 3
   shotDamage: 25
   reloadTime: 1
+  cooldown: 5
   rotationFactor: 1
   maxDistance: 25
   activationKey: 50
@@ -225,7 +226,6 @@ MonoBehaviour:
   cooldownColor: {r: 1, g: 0, b: 0, a: 0}
   firingColor: {r: 0.93859005, g: 1, b: 0, a: 0}
   emissivePower: 250
-  cooldown: 5
 --- !u!65 &7793873385211777188
 BoxCollider:
   m_ObjectHideFlags: 0

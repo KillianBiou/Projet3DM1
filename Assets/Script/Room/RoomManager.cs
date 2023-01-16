@@ -60,25 +60,26 @@ public class RoomManager : NetworkBehaviour
             spawned = Instantiate(roomToInstanciate.m_template,
                 lastRoom.transform.Find("Exit").position,
                 rotation);
-            spawned.GetComponent<RoomData>().template = roomToInstanciate;
-            spawned.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
-            spawned.GetComponent<RoomData>().level = 2;
         }
         else
         {
             spawned = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation);
-            spawned.GetComponent<RoomData>().template = roomToInstanciate;
-            spawned.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
         }
+        int roomLevel = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
+        spawned.GetComponent<RoomData>().level = roomLevel;
 
         ServerManager.Spawn(spawned);
-        SetInstanciateRoom(spawned, roomManager);
+
+        SetInstanciateRoom(spawned, roomToInstanciate.m_name, roomLevel, roomManager);
      }
 
     [ObserversRpc]
-    public void SetInstanciateRoom(GameObject spawnedRoom, RoomManager roomManager)
+    public void SetInstanciateRoom(GameObject spawnedRoom, string templateName, int roomLevel, RoomManager roomManager)
     {
         Debug.Log("Client instanciation");
+        spawnedRoom.GetComponent<RoomData>().level = roomLevel;
+        spawnedRoom.GetComponent<RoomData>().template = roomDeck.GetRoom(templateName);
+
         currentRoom = spawnedRoom;
         spawnedRoom.transform.SetParent(roomContainer.transform);
     }

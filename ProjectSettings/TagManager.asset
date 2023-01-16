@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - CinematicTarget
+  - InteractTrap
   - CinemachineTarget
   layers:
   - Default
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - ShopItem
   - Projectiles
-  - 
+  - InteractTrap
   - 
   - 
   - 

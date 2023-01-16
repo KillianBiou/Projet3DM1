@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface TrapInteraction
 {
+    public void Register();
     public void Activation();
 }

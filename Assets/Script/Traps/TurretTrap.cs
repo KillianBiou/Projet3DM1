@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurretTrap : MonoBehaviour
+public class TurretTrap : MonoBehaviour, TrapInteraction
 {
     #region Parameters
 
@@ -61,6 +61,8 @@ public class TurretTrap : MonoBehaviour
 
     private void Start()
     {
+        Register();
+
         animator = GetComponent<Animator>();
         emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
 
@@ -80,12 +82,6 @@ public class TurretTrap : MonoBehaviour
 
     private void Update()
     {
-        if (currentState == TrapState.CAN_BE_USED && Input.GetKeyDown(activationKey))
-        {
-            ChangeTrapState(TrapState.UP);
-            StartCoroutine(Shoot(0));
-        }
-
         if (currentState == TrapState.COOLDOWN)
         {
             clock += Time.deltaTime;
@@ -189,5 +185,19 @@ public class TurretTrap : MonoBehaviour
     private void HitEffect(Player player)
     {
         player.TakeDamage(shotDamage);
+    }
+
+    public void Activation()
+    {
+        if(currentState == TrapState.CAN_BE_USED)
+        {
+            ChangeTrapState(TrapState.UP);
+            StartCoroutine(Shoot(0));
+        }
+    }
+
+    public void Register()
+    {
+        transform.parent.GetComponentInParent<RoomData>().RegisterTrap(activationKey, this);
     }
 }

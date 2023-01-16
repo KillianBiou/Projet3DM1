@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomData : MonoBehaviour
@@ -6,12 +7,14 @@ public class RoomData : MonoBehaviour
     public RoomPhase hasStarted { get; set; }
     public int level { get; set; }
 
+    public Dictionary<KeyCode, List<TrapInteraction>> interactions = new();
+
     private float currentClock = 0f;
 
     private void Start()
     {
         Debug.Log("Lvl : " + level);
-        for (int i = template.m_maxLevel; i > level; i--)
+        for (int i = 3; i > level; i--)
         {
             Transform trapContainer = transform.Find("Trap").Find("LVL" + i);
             if(trapContainer)
@@ -19,10 +22,6 @@ public class RoomData : MonoBehaviour
                 trapContainer.gameObject.SetActive(false);
             }
         }
-    }
-
-    private void Update()
-    {
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +36,26 @@ public class RoomData : MonoBehaviour
     public void TriggerStart()
     {
         GameContext.instance.StartARoom(10f);
+    }
+
+    public void RegisterTrap(KeyCode code, TrapInteraction trap)
+    {
+        if (!interactions.ContainsKey(code))
+            interactions.Add(code, new List<TrapInteraction>());
+        interactions[code].Add(trap);
+        Debug.Log("Added new trap with keycode" + code);
+    }
+
+    public void ActivateTrap(KeyCode code)
+    {
+        Debug.Log("Activate traps with " + code);
+        if (interactions.ContainsKey(code))
+        {
+            foreach (TrapInteraction trap in interactions[code])
+            {
+                trap.Activation();
+            }
+        }
     }
 
     public void ChangeRoomPhase(RoomPhase phase)

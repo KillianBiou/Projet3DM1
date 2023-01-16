@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class GameMasterInteraction : MonoBehaviour
 {
-    #region Internal Parameters
-
-    private Dictionary<KeyCode, List<TrapInteraction>> activationDict = new Dictionary<KeyCode, List<TrapInteraction>>();
-
-    #endregion
-
-    public void RegisterTrap(KeyCode activationKey, TrapInteraction trap)
+    private void Update()
     {
-        activationDict[activationKey].Add(trap);
-    }
-
-    public void ClearActivationList()
-    {
-        activationDict.Clear();
+        for(int i = (int)KeyCode.Alpha1; i <= (int)KeyCode.Alpha9; i++)
+        {
+            if (Input.GetKeyDown((KeyCode)i))
+            {
+                GameContext.instance.ActivateTrap((KeyCode)i);
+            }
+        }
     }
 }

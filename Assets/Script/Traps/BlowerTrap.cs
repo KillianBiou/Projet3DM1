@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BlowerTrap : MonoBehaviour
+public class BlowerTrap : MonoBehaviour, TrapInteraction
 {
     #region Parameters
 
@@ -51,6 +51,8 @@ public class BlowerTrap : MonoBehaviour
 
     private void Start()
     {
+        Register();
+
         animator = GetComponent<Animator>();
         trapCollider = GetComponentInChildren<BoxCollider>();
         emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
@@ -82,10 +84,6 @@ public class BlowerTrap : MonoBehaviour
                 ChangeTrapState(TrapState.CAN_BE_USED);
                 clock = 0f;
             }
-        }
-        else if(currentState == TrapState.CAN_BE_USED && Input.GetKeyDown(activationKey))
-        {
-            ChangeTrapState(TrapState.UP);
         }
         else if(currentState == TrapState.UP)
         {
@@ -135,5 +133,18 @@ public class BlowerTrap : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position += (trapDirection.forward * (blowerForce * (turbo ? turboMulti : 1)) * Time.deltaTime);
         player.GetComponent<CharacterController>().enabled = true;
+    }
+
+    public void Register()
+    {
+        transform.parent.GetComponentInParent<RoomData>().RegisterTrap(activationKey, this);
+    }
+
+    public void Activation()
+    {
+        if(currentState == TrapState.CAN_BE_USED)
+        {
+            ChangeTrapState(TrapState.UP);
+        }
     }
 }

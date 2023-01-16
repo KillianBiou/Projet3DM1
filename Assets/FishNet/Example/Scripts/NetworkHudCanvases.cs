@@ -82,7 +82,7 @@ public class NetworkHudCanvases : MonoBehaviour
 
     void OnGUI()
     {
-#if ENABLE_INPUT_SYSTEM        
+#if !ENABLE_INPUT_SYSTEM        
         string GetNextStateText(LocalConnectionState state)
         {
             if (state == LocalConnectionState.Stopped)
@@ -132,8 +132,8 @@ public class NetworkHudCanvases : MonoBehaviour
         if (inputModule == null)
             gameObject.AddComponent<StandaloneInputModule>();
 #else
-        _serverIndicator.transform.parent.gameObject.SetActive(false);
-        _clientIndicator.transform.parent.gameObject.SetActive(false);
+        //_serverIndicator.transform.parent.gameObject.SetActive(false);
+        //_clientIndicator.transform.parent.gameObject.SetActive(false);
 #endif
 
         _networkManager = FindObjectOfType<NetworkManager>();
