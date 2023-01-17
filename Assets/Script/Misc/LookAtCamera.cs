@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    [SerializeField] 
     private Camera _camera;
     [SerializeField]
     private Vector2 limitScale;
@@ -13,7 +12,12 @@ public class LookAtCamera : MonoBehaviour
 
     private void Start()
     {
-        _camera = GameObject.Find("GameMaster").GetComponent<Camera>();
+        _camera = GameContext.instance.gameMasterObject.GetComponent<Camera>();
+        if (!_camera)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     private void Update()

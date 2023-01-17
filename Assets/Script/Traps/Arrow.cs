@@ -16,6 +16,7 @@ public class Arrow : MonoBehaviour
         else
         {
             Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<BoxCollider>());
         }
     }
 

@@ -42,6 +42,9 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
     [SerializeField]
     private float emissivePower;
 
+    [SerializeField]
+    private GameObject bulletPrefab;
+
     #endregion
     #region Internal Parameters
 
@@ -70,7 +73,6 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
         scope.SetLaserMaxLenght(maxDistance);
 
         cannonTip = scope.transform.parent;
-
         foreach (Renderer renderer in emmisiveRenderers)
         {
             if(renderer.name != "Line")
@@ -156,6 +158,7 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
 
     private IEnumerator Shoot(int currentShot)
     {
+        Debug.Log("zdazd");
         if(currentShot < nbShot)
         {
             animator.SetTrigger("Shoot");
@@ -173,6 +176,7 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
     private void ShootBullet()
     {
         RaycastHit hit;
+        Instantiate(bulletPrefab, cannonTip.transform.position, cannonTip.rotation);
         if(Physics.Raycast(cannonTip.position, cannonTip.forward, out hit, maxDistance))
         {
             if (hit.transform.CompareTag("Player"))

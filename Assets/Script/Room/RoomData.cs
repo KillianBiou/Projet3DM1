@@ -11,6 +11,9 @@ public class RoomData : MonoBehaviour
 
     private float currentClock = 0f;
 
+    private GameObject entry;
+    private GameObject exit;
+
     private void Start()
     {
         Debug.Log("Lvl : " + level);
@@ -22,6 +25,9 @@ public class RoomData : MonoBehaviour
                 trapContainer.gameObject.SetActive(false);
             }
         }
+        entry = transform.Find("Entry").gameObject;
+        entry.GetComponentInChildren<Animator>().SetTrigger("Lift");
+        exit = transform.Find("Exit").gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,6 +76,7 @@ public class RoomData : MonoBehaviour
                 {
                     mr.material.color = Color.red;
                 }
+                entry.GetComponentInChildren<Animator>().SetTrigger("Close");
                 break;
 
             case RoomPhase.ENDED:
@@ -79,6 +86,7 @@ public class RoomData : MonoBehaviour
                 {
                     mr.material.color = Color.white;
                 }
+                exit.GetComponentInChildren<Animator>().SetTrigger("Lift");
                 break;
         }
     }

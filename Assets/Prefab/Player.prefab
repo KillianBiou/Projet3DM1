@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29aaccadd801f0a4bb02923aefa0452e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: -6332982905836727307}
   _networkObjectCache: {fileID: -6332982905836727307}
   componentsToRemove:
@@ -502,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7155165954458722582
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ CharacterController:
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.93, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7496119715342547883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +559,9 @@ MonoBehaviour:
   moveSpeedBuff: []
   RotationSpeed: 8
   SpeedChangeRate: 10
+  normalHeight: 2
+  crouchHeight: 1
+  crouchDebuff: 50
   JumpHeight: 1.2
   Gravity: -15
   JumpTimeout: 0.1
@@ -606,6 +609,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  crouch: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -772,6 +776,7 @@ MonoBehaviour:
   - {fileID: 8997996946051494435}
   - {fileID: 6943964337140505782}
   - {fileID: 5354750070802514257}
+  - {fileID: 1547091738840423492}
   - {fileID: 1522766162883437168}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
@@ -779,12 +784,11 @@ MonoBehaviour:
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 5
-  _scenePathHash: 0
+  <PrefabId>k__BackingField: 6
+  _scenePathHash: 2578332039
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 14101666835978689608
   _sceneNetworkObjects:
-  - {fileID: -6332982905836727307}
   - {fileID: 0}
 --- !u!114 &6943964337140505782
 MonoBehaviour:
@@ -1366,9 +1370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 0}
-  _networkObjectCache: {fileID: 0}
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: -6332982905836727307}
+  _networkObjectCache: {fileID: -6332982905836727307}
   IgnoredParameters: []
   _animator: {fileID: 5967645673217759924}
   _smoothFloats: 1

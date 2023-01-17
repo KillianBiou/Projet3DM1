@@ -73,6 +73,7 @@ public class GameContext : NetworkBehaviour
     public void EndARoom()
     {
         instance.SetRoomState(GamePhase.REST);
+        roomManager.InstanciateRestRoomSchedule();
     }
 
     [ObserversRpc]

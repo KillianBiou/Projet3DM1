@@ -39,10 +39,6 @@ public class RoomManager : NetworkBehaviour
         {
             InstanciateRoomServer(roomDeck.GetRoom("TestRoom"), currentRoom, this);
         }
-        else if (Input.GetKeyDown(KeyCode.R) && roomDeck.GetRoom("LTurn"))
-        {
-            InstanciateRestRoomServer(restRoom, currentRoom, this);
-        }
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -82,6 +78,11 @@ public class RoomManager : NetworkBehaviour
 
         currentRoom = spawnedRoom;
         spawnedRoom.transform.SetParent(roomContainer.transform);
+    }
+
+    public void InstanciateRestRoomSchedule()
+    {
+        InstanciateRestRoomServer(restRoom, currentRoom, this);
     }
 
     [ServerRpc(RequireOwnership = false)]

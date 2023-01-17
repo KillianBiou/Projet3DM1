@@ -26,8 +26,14 @@ namespace StarterAssets
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+        [Tooltip("Normal height")]
+        public float normalHeight;
+        [Tooltip("Crouch height")]
+		public float crouchHeight;
+        [Tooltip("Crouch speed debuff (percentage)")]
+        public float crouchDebuff;
 
-		[Space(10)]
+        [Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -71,6 +77,7 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+		private bool _crouchMemory = false;
 
 	
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -110,7 +117,7 @@ namespace StarterAssets
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-			_playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<PlayerInput>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -123,6 +130,7 @@ namespace StarterAssets
 		private void Update()
 		{
 			JumpAndGravity();
+			Crouch();
 			GroundedCheck();
 			Move();
 		}
@@ -143,6 +151,21 @@ namespace StarterAssets
                 animator.SetBool("Jump", false);
             }
         }
+		private void Crouch()
+		{
+			if (_input.crouch && !_crouchMemory)
+			{
+				_controller.height = crouchHeight;
+				MoveSpeed *= (1 - (crouchDebuff / 100f));
+				_crouchMemory = true;
+			}
+			else if(!_input.crouch && _crouchMemory)
+			{
+				_controller.height = normalHeight;
+                MoveSpeed /= (1 -(crouchDebuff / 100f));
+				_crouchMemory = false;
+            }
+		}
 
 		private void CameraRotation()
 		{
@@ -170,7 +193,7 @@ namespace StarterAssets
 		{
 			Rigidbody rb = GetComponent<Rigidbody>();
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = (_input.sprint ? SprintSpeed : MoveSpeed);
+			float targetSpeed = (_input.sprint && !_input.crouch ? SprintSpeed : MoveSpeed);
 			if(slowDebuff.Count > 0)
 			{
 				targetSpeed *= (1 - slowDebuff.Max(t => t.value) / 100f);

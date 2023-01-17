@@ -47,6 +47,8 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
 
     private List<Renderer> emmisiveRenderers = new List<Renderer>();
 
+    private LayerMask hitMask = ~((1 << 0) | (1 << 2));
+
     #endregion
 
     private void Start()
@@ -68,7 +70,7 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity))
+        if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity, hitMask))
         {
             if (hit.transform.CompareTag("Player"))
             {
