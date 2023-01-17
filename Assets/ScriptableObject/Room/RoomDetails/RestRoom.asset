@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: RestRoom
   m_maxLevel: 5
-  m_template: {fileID: 6832576298794340552, guid: e159bc749063076408ff5d108872ea95,
+  m_template: {fileID: 5631231806404788900, guid: a6a4c086010b33545a59be757dc4a206,
     type: 3}
   m_timer: 0
