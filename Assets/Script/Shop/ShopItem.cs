@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopItem : MonoBehaviour
@@ -36,8 +37,31 @@ public class ShopItem : MonoBehaviour
         SetShopUI(true);
     }
 
+    public IEnumerator ScaleUpAnimation()
+    {
+        for (int i = 0; i <= 100; i += 5)
+        {
+            UICanvas.GetComponent<RectTransform>().localScale = (Vector2.one * (i / 100f)) * 5;
+            yield return new WaitForNextFrameUnit();
+        }
+    }
+
+    public IEnumerator ScaleDownAnimation()
+    {
+        for (int i = 100; i >= 100; i -= 5)
+        {
+            UICanvas.GetComponent<RectTransform>().localScale = (Vector2.one * (i / 100f)) * 5;
+            yield return new WaitForNextFrameUnit();
+        }
+    }
+
     public void SetShopUI(bool state)
     {
+        if (state)
+            StartCoroutine(ScaleUpAnimation());
+        else
+            StartCoroutine(ScaleDownAnimation());
+
         UICanvas.SetActive(state);
     }
 
