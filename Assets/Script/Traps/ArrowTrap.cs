@@ -18,6 +18,8 @@ public class ArrowTrap : MonoBehaviour
     private int damage;
     [SerializeField]
     private float arrowSpeed;
+    [SerializeField]
+    private float fadeOutSeconds;
 
     [SerializeField]
     private Color cooldownColor;
@@ -115,7 +117,7 @@ public class ArrowTrap : MonoBehaviour
         foreach(GameObject arrow in currentArrows)
         {
             if(arrow)
-                StartCoroutine(arrow.GetComponent<Arrow>().ScheduleDestruction(2));
+                StartCoroutine(arrow.GetComponent<Arrow>().ScheduleDestruction(fadeOutSeconds));
         }
 
         currentArrows.Clear();

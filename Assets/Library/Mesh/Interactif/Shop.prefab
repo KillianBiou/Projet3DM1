@@ -3078,12 +3078,12 @@ PrefabInstance:
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
       propertyPath: effect.type
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
       propertyPath: effect.value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}

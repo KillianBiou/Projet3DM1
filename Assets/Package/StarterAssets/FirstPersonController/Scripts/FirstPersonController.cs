@@ -132,13 +132,13 @@ namespace StarterAssets
 			JumpAndGravity();
 			Crouch();
 			GroundedCheck();
-			Move();
-		}
+            Move();
+        }
 
 		private void LateUpdate()
 		{
 			CameraRotation();
-		}
+        }
 
 		private void GroundedCheck()
 		{
@@ -193,7 +193,7 @@ namespace StarterAssets
 		{
 			Rigidbody rb = GetComponent<Rigidbody>();
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = (_input.sprint && !_input.crouch ? SprintSpeed : MoveSpeed);
+			float targetSpeed =  MoveSpeed;
 			if(slowDebuff.Count > 0)
 			{
 				targetSpeed *= (1 - slowDebuff.Max(t => t.value) / 100f);

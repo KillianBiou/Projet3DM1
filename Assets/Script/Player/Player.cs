@@ -2,6 +2,8 @@ using StarterAssets;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using System.Collections;
+using System.Linq;
 
 public class Player : NetworkBehaviour
 {
@@ -9,22 +11,42 @@ public class Player : NetworkBehaviour
 
     [SerializeField]
     [SyncVar]
-    private int maxHp;
+    private int maxHp = 5;
 
     [SerializeField]
     [SyncVar]
     private int hp;
 
+    [SerializeField]
+    [SyncVar]
+    private bool haveShield;
+
+    private int points = 0;
+
     #endregion
 
     #region Internal Variables
 
+    [SyncVar]
     private bool isInvulnerable = false;
     [SerializeField]
     private float invulnerableDuration;
-    private float invulnerableClock;
+
+    [SerializeField]
+    private bool hasCutTrap;
+    [SerializeField]
+    private bool hasBlind;
+    private GameObject trapTarget;
+
+    private PlayerUI playerUI;
+    private StarterAssetsInputs playerInput;
+    private Camera camera;
+
+    private ParticleSystem shieldSystem;
 
     #endregion
+
+
 
     public override void OnStartClient()
     {
@@ -32,15 +54,29 @@ public class Player : NetworkBehaviour
         GameContext.instance.SetPlayer(gameObject);
     }
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        hp = maxHp;
+        SetShield(false);
+    }
+
     private void Start()
     {
-        hp = maxHp;
+        shieldSystem = GetComponent<ParticleSystem>();
+        shieldSystem.Stop();
     }
 
     private void Update()
     {
         FadeInvulnerable();
+        if (base.IsOwner)
+        {
+            //CheckTrapTarget();
+            UseSkills();
+        }
     }
+
 
     public void StartGame()
     {
@@ -48,7 +84,11 @@ public class Player : NetworkBehaviour
         {
             Debug.Log("Owner of player");
             GetComponent<CharacterController>().enabled = true;
+            playerUI = transform.Find("CanvasPlayer").GetComponent<PlayerUI>();
+            playerUI.gameObject.SetActive(true);
             GetComponent<ComponentActivator>().StartGame();
+            playerInput = GetComponent<StarterAssetsInputs>();
+            camera = transform.Find("PlayerCameraRoot").GetComponentInChildren<Camera>();
         }
     }
 
@@ -57,14 +97,52 @@ public class Player : NetworkBehaviour
     {
         if (!isInvulnerable)
         {
-            hp -= amount;
-            Debug.Log("Took " + amount + " damage.");
-            if (hp <= 0)
+            if (haveShield)
+                SetShield(false);
+            else
             {
-                Debug.Log("DEAD");
+                isInvulnerable = true;
+                hp -= amount;
+                if (hp <= 0)
+                {
+                    Debug.Log("DEAD");
+                }
+                StartCoroutine(FadeInvulnerable());
             }
-            isInvulnerable = true;
-            invulnerableClock = invulnerableDuration;
+        }
+    }
+
+    private void UseSkills()
+    {
+        if (playerInput.CutTrap && hasCutTrap)
+        {
+            Debug.Log("Use cut trap");
+        }
+        if (playerInput.Blind && hasBlind)
+        {
+            Debug.Log("Use Blind");
+            hasBlind = false;
+            GameContext.instance.gameMasterObject.GetComponent<GameMaster>().CutCamera(5);
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetShield(bool shield)
+    {
+        haveShield = shield;
+        RefreshShield(shield);
+    }
+
+    [ObserversRpc]
+    public void RefreshShield(bool value)
+    {
+        if (value)
+        {
+            shieldSystem.Play();
+        }
+        else
+        {
+            shieldSystem.Stop();
         }
     }
 
@@ -79,16 +157,16 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public void FadeInvulnerable()
+    [ServerRpc(RequireOwnership = false)]
+    private void SetInvulnerable(bool invulnerable)
     {
-        if (isInvulnerable)
-        {
-            invulnerableClock -= Time.deltaTime;
-            if (invulnerableClock <= 0)
-            {
-                isInvulnerable = false;
-            }
-        }
+        isInvulnerable = invulnerable;
+    }
+
+    public IEnumerator FadeInvulnerable()
+    {
+        yield return new WaitForSeconds(invulnerableDuration);
+        SetInvulnerable(false);
     }
 
     public void ProcessShopItem(Modifier modifier)
@@ -101,6 +179,50 @@ public class Player : NetworkBehaviour
             case ModifierType.HP:
                 Heal(modifier.value);
                 break;
+            case ModifierType.SHIELD:
+                SetShield(true);
+                break;
         }
+    }
+
+    private void CheckTrapTarget()
+    {
+        RaycastHit raycastHit;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out raycastHit, 10, 1 << 13))
+        {
+            SetNewTargetLook(raycastHit.transform.gameObject);
+        }
+        else
+        {
+            trapTarget = null;
+        }
+    }
+
+    private void SetNewTargetLook(GameObject trap)
+    {
+        if (trap != trapTarget)
+        {
+            trapTarget = trap;
+        }
+    }
+
+    public int GetHP()
+    {
+        return hp;
+    }
+
+    public int GetPoints()
+    {
+        return points;
+    }
+
+    public bool GetHasCutTrap()
+    {
+        return hasCutTrap;
+    }
+
+    public bool GetHasBlind()
+    {
+        return hasBlind;
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2961318192477830584}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 2306175100879489088}
   - component: {fileID: 3865237167013740898}
   - component: {fileID: 4338339481954637031}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ElectroTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,9 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   upTime: 2
-  damage: 5
+  damage: 1
   slow:
-    modifier: 0
+    type: 0
     value: 90
   activatedBrightness: {x: 100, y: 250}
   oscillationFactor: 15
@@ -161,6 +161,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,6 +185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -250,6 +260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -381,6 +396,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: -0.2630001
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -411,6 +436,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.294
       objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}
 --- !u!4 &1187837062687520701 stripped
@@ -426,6 +456,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,6 +480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -515,6 +555,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -646,6 +691,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: 0.20799997
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -676,6 +731,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.294
       objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}
 --- !u!4 &4917294112789597468 stripped
@@ -691,6 +751,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -710,6 +775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -780,6 +850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -881,6 +956,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: 0.669
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -911,6 +996,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.294
       objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}
 --- !u!4 &5888831214742420162 stripped
@@ -926,6 +1016,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -945,6 +1040,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -1015,6 +1115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -1121,6 +1226,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: 0.669
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1150,6 +1265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}

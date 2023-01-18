@@ -42,10 +42,7 @@ public class SpikeTrap : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        foreach (Renderer renderer in emmisiveRenderers)
-        {
-            renderer.material.SetColor("_EmissiveColor", cooldownColor * emissivePower);
-        }
+        ChangeTrapState(TrapState.COOLDOWN);
     }
 
     private void Update()

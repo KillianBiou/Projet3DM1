@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1026586975}
   - component: {fileID: 1026586976}
   - component: {fileID: 1026586977}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 1117742772}
   - component: {fileID: 1329053271}
   - component: {fileID: 7793873385211777188}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Turret
   m_TagString: InteractTrap
   m_Icon: {fileID: 0}
@@ -217,8 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotDuration: 0.5
   nbShot: 3
-  shotDamage: 25
-  vfxSpeed: 0
+  shotDamage: 3
   reloadTime: 1
   cooldown: 5
   rotationFactor: 1
@@ -252,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7046410806916225405}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +286,7 @@ GameObject:
   - component: {fileID: 6318532451702642104}
   - component: {fileID: 4603950475257671271}
   - component: {fileID: 4435084290550749131}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Plane.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +384,7 @@ GameObject:
   - component: {fileID: 213733882015467685}
   - component: {fileID: 5637876692264731319}
   - component: {fileID: 7102881801122048768}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Turret base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +481,7 @@ GameObject:
   - component: {fileID: 1878573752363531812}
   - component: {fileID: 499351606130294099}
   - component: {fileID: 6492800759415583532}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Laoder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,10 +574,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2251250509955820944}
     m_Modifications:
+    - target: {fileID: 7358612598807953496, guid: e4f4ab6a5960e9343b3ae1efcec6b71f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8189969762432675901, guid: e4f4ab6a5960e9343b3ae1efcec6b71f,
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189969762432675901, guid: e4f4ab6a5960e9343b3ae1efcec6b71f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9134545622801551060, guid: e4f4ab6a5960e9343b3ae1efcec6b71f,
         type: 3}

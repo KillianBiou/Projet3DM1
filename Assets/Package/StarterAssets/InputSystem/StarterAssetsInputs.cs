@@ -13,6 +13,8 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool crouch;
+		public bool Blind;
+		public bool CutTrap;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +51,16 @@ namespace StarterAssets
         {
             CrouchInput(value.isPressed);
         }
+
+        public void OnBlind(InputValue value)
+        {
+            BlindInput(value.isPressed);
+        }
+
+        public void OnCutTrap(InputValue value)
+        {
+            CutTrapInput(value.isPressed);
+        }
 #endif
 
 
@@ -76,8 +88,18 @@ namespace StarterAssets
 		{
 			crouch = newCrouchState;
         }
-		
-		private void OnApplicationFocus(bool hasFocus)
+
+        public void BlindInput(bool newBlindState)
+        {
+            Blind = newBlindState;
+        }
+
+        public void CutTrapInput(bool newTrapState)
+        {
+            CutTrap = newTrapState;
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}

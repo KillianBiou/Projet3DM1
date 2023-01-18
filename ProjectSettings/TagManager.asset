@@ -18,10 +18,10 @@ TagManager:
   - Projectiles
   - InteractTrap
   - Player
-  - 
-  - 
+  - GMUI
+  - PLAYERUI
   - Wall
-  - 
+  - Trap
   - 
   - 
   - 

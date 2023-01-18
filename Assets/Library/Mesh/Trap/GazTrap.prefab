@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4188426967307865006}
   - component: {fileID: 838688500460423460}
   - component: {fileID: 8686764346482716824}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4877,7 +4877,7 @@ GameObject:
   - component: {fileID: 28518175042050743}
   - component: {fileID: 6201405941716747615}
   - component: {fileID: 1928229542648647674}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9741,7 +9741,7 @@ GameObject:
   - component: {fileID: 807569071813128060}
   - component: {fileID: 1792504898611053732}
   - component: {fileID: 6878288968859064729}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14605,7 +14605,7 @@ GameObject:
   - component: {fileID: 539157072434141122}
   - component: {fileID: 9216563442109082515}
   - component: {fileID: 5904812574237211596}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19469,7 +19469,7 @@ GameObject:
   - component: {fileID: 4891829914237159009}
   - component: {fileID: 3374621005932780436}
   - component: {fileID: 8029508866247969421}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24332,7 +24332,7 @@ GameObject:
   - component: {fileID: 4892495404367640094}
   - component: {fileID: 5845876834387568618}
   - component: {fileID: 244737620508273748}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24430,7 +24430,7 @@ GameObject:
   - component: {fileID: 5572221561001664863}
   - component: {fileID: 1256950115964681014}
   - component: {fileID: 5411318647696452183}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29292,7 +29292,7 @@ GameObject:
   - component: {fileID: 5154510203505870972}
   - component: {fileID: 7862184338318653569}
   - component: {fileID: 4873554829987701456}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29351,7 +29351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   upTime: 5
-  damage: 10
+  damage: 1
   cooldownColor: {r: 1, g: 0, b: 0, a: 0}
   firingColor: {r: 0.06140983, g: 1, b: 0, a: 0}
   emissivePower: 250
@@ -29368,7 +29368,7 @@ GameObject:
   - component: {fileID: 1370593067771962790}
   - component: {fileID: 3740732696120075756}
   - component: {fileID: 7343637764605596038}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34232,7 +34232,7 @@ GameObject:
   - component: {fileID: 2257195560396657214}
   - component: {fileID: 6855460730727731631}
   - component: {fileID: 8598126626099807347}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39096,7 +39096,7 @@ GameObject:
   - component: {fileID: 8085574718143582644}
   - component: {fileID: 4729349909175649051}
   - component: {fileID: 1244523421995312405}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GazEmitter08
   m_TagString: Untagged
   m_Icon: {fileID: 0}

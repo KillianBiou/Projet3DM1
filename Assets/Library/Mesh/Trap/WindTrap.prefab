@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 489104379}
   - component: {fileID: 489104378}
   - component: {fileID: 3250246369713458796}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Helice_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1616314542}
   - component: {fileID: 1616314544}
   - component: {fileID: 1616314543}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Helice_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6938783808532440170}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BlowerDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 7212629405330362514}
   - component: {fileID: 3179566562684750035}
   - component: {fileID: 8320227656398587441}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WindTrap
   m_TagString: InteractTrap
   m_Icon: {fileID: 0}
