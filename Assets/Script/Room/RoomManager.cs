@@ -22,7 +22,7 @@ public class RoomManager : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && roomDeck.GetRoom("Classic"))
+        /*if (Input.GetKeyDown(KeyCode.W) && roomDeck.GetRoom("Classic"))
         {
             InstanciateRoomServer(roomDeck.GetRoom("Classic"), currentRoom, this);
         }
@@ -36,11 +36,20 @@ public class RoomManager : NetworkBehaviour
         else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("TowerLongRoom"))
         {
             InstanciateRoomServer(roomDeck.GetRoom("TowerLongRoom"), currentRoom, this);
-        }
+        }*/
+    }
+
+    public void RequestRoomConstruction(RoomScriptableObject roomToInstanciate, int lvl)
+    {
+        Debug.Log(roomToInstanciate);
+        Debug.Log(roomToInstanciate.m_name);
+        Debug.Log(lvl);
+
+        InstanciateRoomServer(roomDeck.GetRoom(roomToInstanciate.m_name), currentRoom, lvl, this);
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void InstanciateRoomServer(RoomScriptableObject roomToInstanciate, GameObject lastRoom, RoomManager roomManager)
+    public void InstanciateRoomServer(RoomScriptableObject roomToInstanciate, GameObject lastRoom, int level, RoomManager roomManager)
     {
         Debug.Log("SERVER INSTANCIATE");
 
@@ -59,13 +68,12 @@ public class RoomManager : NetworkBehaviour
         {
             spawned = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation);
         }
-        int roomLevel = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
-        spawned.GetComponent<RoomData>().level = roomLevel;
+        spawned.GetComponent<RoomData>().level = level;
 
         ServerManager.Despawn(lastGameRoom);
         ServerManager.Spawn(spawned);
 
-        SetInstanciateRoom(spawned, roomToInstanciate.m_name, roomLevel, roomManager);
+        SetInstanciateRoom(spawned, roomToInstanciate.m_name, level, roomManager);
      }
 
     [ObserversRpc]
@@ -123,5 +131,10 @@ public class RoomManager : NetworkBehaviour
     public GameObject GetCurrentRoom()
     {
         return currentRoom;
+    }
+
+    public RoomDeckScriptableObject GetDeck()
+    {
+        return roomDeck;
     }
 }

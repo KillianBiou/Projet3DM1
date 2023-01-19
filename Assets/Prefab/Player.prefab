@@ -554,8 +554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 15
-  SprintSpeed: 30
+  MoveSpeed: 7
+  SprintSpeed: 7
   slowDebuff:
   - type: 0
     value: 0
@@ -565,8 +565,8 @@ MonoBehaviour:
   normalHeight: 2
   crouchHeight: 1
   crouchDebuff: 50
-  JumpHeight: 1.2
-  Gravity: -15
+  JumpHeight: 0.8
+  Gravity: -25
   JumpTimeout: 0.1
   FallTimeout: 0.15
   Grounded: 1
@@ -795,7 +795,7 @@ MonoBehaviour:
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 6
+  <PrefabId>k__BackingField: 14
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 14101666835978689608

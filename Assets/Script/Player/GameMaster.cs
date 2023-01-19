@@ -25,6 +25,8 @@ public class GameMaster : NetworkBehaviour
 
             cutCameraObject = GMUI.transform.Find("NoiseEffect").gameObject;
             cutCameraObject.SetActive(false);
+
+            GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
         }
     }
 

@@ -16,4 +16,4 @@ MonoBehaviour:
   m_maxLevel: 3
   m_template: {fileID: 1245719597925540693, guid: cc0d12663eaef6940bd9e69c8a319923,
     type: 3}
-  m_timer: 90
+  m_timer: 10

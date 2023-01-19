@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,22 +8,15 @@ using UnityEngine.UI;
 
 public class RoomCard : MonoBehaviour
 {
-    [SerializeField]
     private RoomDeckScriptableObject deck;
     
-    [SerializeField]
     private RoomScriptableObject template;
 
-    [SerializeField]
     private int level;
 
-    [SerializeField]
     private SerializedDictionary<string, int> trapInventory = new();
 
-    private void Start()
-    {
-        RandomRoom(deck);
-    }
+    public KeyCode activationKey { get; set; }
 
     public void RandomRoom(RoomDeckScriptableObject roomDeck)
     {
@@ -46,5 +40,13 @@ public class RoomCard : MonoBehaviour
         mapTemplate.Find("PointsArea").GetComponentInChildren<TextMeshProUGUI>().text = (level * 2).ToString() + " PTS";
 
         mapTemplate.Find("RoomArea").GetComponentInChildren<Image>().sprite = template.m_template.GetComponent<RoomData>().icon;
+
+        Debug.Log(activationKey.ToString());
+        mapTemplate.Find("KeyTxt").GetComponentInChildren<TextMeshProUGUI>().text = Regex.Replace(activationKey.ToString(), @"[a-zA-Z]", "");
+    }
+
+    public void RequestConstruction()
+    {
+        GameContext.instance.roomManager.RequestRoomConstruction(template, level);
     }
 }

@@ -22,7 +22,7 @@ public class GameContext : NetworkBehaviour
     public static GameContext instance;
 
     private GamePhase gamePhase = GamePhase.MENU;
-    private RoomManager roomManager;
+    public RoomManager roomManager;
 
     public GameObject playerObject;
     public GameObject gameMasterObject;
@@ -65,6 +65,7 @@ public class GameContext : NetworkBehaviour
     {
         roomTimer = challengeTimer;
         instance.SetRoomState(GamePhase.ROOM);
+        instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.ROOM);
         StartCoroutine(RoomClock(challengeTimer));
     }
 
@@ -82,6 +83,7 @@ public class GameContext : NetworkBehaviour
     public void EndARoom()
     {
         instance.SetRoomState(GamePhase.REST);
+        instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
         roomManager.InstanciateRestRoomSchedule();
         playerObject.GetComponent<Player>().AddPoint(roomManager.GetCurrentRoom().GetComponent<RoomData>().level * 2);
     }
@@ -118,5 +120,10 @@ public class GameContext : NetworkBehaviour
     public GameObject GetPlayer()
     {
         return instance.playerObject;
+    }
+
+    public GamePhase GetGamePhase()
+    {
+        return gamePhase;
     }
 }
