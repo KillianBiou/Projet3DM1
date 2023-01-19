@@ -1,14 +1,21 @@
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using System;
 using Unity.Mathematics;
 using UnityEngine;
 public class RoomManager : NetworkBehaviour
 {
+
     [SerializeField]
     private RoomScriptableObject restRoom;
 
     [SerializeField]
     private RoomDeckScriptableObject roomDeck;
+
+    [SerializeField]
+    private GameObject beginRoom;
+    [SerializeField]
+    private GameObject endRoom;
 
     private GameObject roomContainer;
     private GameObject currentRoom;
@@ -20,33 +27,63 @@ public class RoomManager : NetworkBehaviour
         roomContainer = GameObject.Find("RoomContainer");
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.W) && roomDeck.GetRoom("Classic"))
-        {
-            InstanciateRoomServer(roomDeck.GetRoom("Classic"), currentRoom, this);
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && roomDeck.GetRoom("BigRoom"))
-        {
-            InstanciateRoomServer(roomDeck.GetRoom("BigRoom"), currentRoom, this);
-        }
-        else if(Input.GetKeyDown(KeyCode.C) && roomDeck.GetRoom("LongTunnelMap")) {
-            InstanciateRoomServer(roomDeck.GetRoom("LongTunnelMap"), currentRoom, this);
-        }
-        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("TowerLongRoom"))
-        {
-            InstanciateRoomServer(roomDeck.GetRoom("TowerLongRoom"), currentRoom, this);
-        }*/
-    }
-
     public void RequestRoomConstruction(RoomScriptableObject roomToInstanciate, int lvl)
     {
-        Debug.Log(roomToInstanciate);
-        Debug.Log(roomToInstanciate.m_name);
-        Debug.Log(lvl);
-
         InstanciateRoomServer(roomDeck.GetRoom(roomToInstanciate.m_name), currentRoom, lvl, this);
     }
+
+    public void RequestEndRoomConstruction(bool reversed)
+    {
+        if (reversed)
+        {
+            InstanciateEndRoom(endRoom, currentRoom, this);
+
+        }
+        else
+        {
+            InstanciateEndRoom(beginRoom, currentRoom, this);
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void InstanciateEndRoom(GameObject roomToInstanciate, GameObject lastRoom, RoomManager roomManager)
+    {
+        Debug.Log("SERVER INSTANCIATE");
+
+        GameObject spawned = null;
+        if (lastRoom != null)
+        {
+            Quaternion rotation = roomToInstanciate.transform.rotation * lastRoom.transform.Find("Exit").transform.rotation;
+            if (roomToInstanciate.transform.Find("Entry"))
+                rotation *= roomToInstanciate.transform.Find("Entry").rotation;
+
+            spawned = Instantiate(roomToInstanciate,
+                lastRoom.transform.Find("Exit").position,
+                rotation);
+        }
+        else
+        {
+            spawned = Instantiate(roomToInstanciate, Vector3.zero, roomToInstanciate.transform.rotation);
+        }
+
+        ServerManager.Despawn(lastGameRoom);
+        ServerManager.Spawn(spawned);
+
+        SetInstanciateEndRoom(spawned);
+    }
+
+    [ObserversRpc]
+    public void SetInstanciateEndRoom(GameObject spawnedRoom)
+    {
+        Debug.Log("Client instanciation");
+        if (currentRoom)
+            currentRoom.transform.Find("Exit").GetComponentInChildren<Animator>().SetTrigger("Lift");
+
+        lastRestRoom = currentRoom;
+        currentRoom = spawnedRoom;
+        spawnedRoom.transform.SetParent(roomContainer.transform);
+    }
+
 
     [ServerRpc(RequireOwnership = false)]
     public void InstanciateRoomServer(RoomScriptableObject roomToInstanciate, GameObject lastRoom, int level, RoomManager roomManager)

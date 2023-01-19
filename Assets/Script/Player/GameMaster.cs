@@ -1,5 +1,6 @@
 using FishNet.Object;
 using System.Collections;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class GameMaster : NetworkBehaviour
@@ -27,6 +28,7 @@ public class GameMaster : NetworkBehaviour
             cutCameraObject.SetActive(false);
 
             GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
+            GameContext.instance.roomManager.RequestEndRoomConstruction(false);
         }
     }
 

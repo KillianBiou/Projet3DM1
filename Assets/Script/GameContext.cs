@@ -21,6 +21,10 @@ public class GameContext : NetworkBehaviour
 {
     public static GameContext instance;
 
+    public int roomToComplete = 1;
+    [SyncVar]
+    public int roomCompleted;
+
     private GamePhase gamePhase = GamePhase.MENU;
     public RoomManager roomManager;
 
@@ -83,10 +87,19 @@ public class GameContext : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void EndARoom()
     {
-        instance.SetRoomState(GamePhase.REST);
-        instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
-        roomManager.InstanciateRestRoomSchedule();
         playerObject.GetComponent<Player>().AddPoint(roomManager.GetCurrentRoom().GetComponent<RoomData>().level * 2);
+        
+        roomCompleted++;
+        if(roomCompleted >= roomToComplete)
+        {
+            roomManager.RequestEndRoomConstruction(true);
+        }
+        else
+        {
+            roomManager.InstanciateRestRoomSchedule();
+            instance.SetRoomState(GamePhase.REST);
+            instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
+        }
     }
 
     [ObserversRpc]
