@@ -185,25 +185,29 @@ public class Player : NetworkBehaviour
         SetInvulnerable(false);
     }
 
-    public void ProcessShopItem(Modifier modifier)
+    public void ProcessShopItem(Modifier modifier, int cost)
     {
-        switch(modifier.type)
+        if(cost <= points)
         {
-            case ModifierType.MOVEMENT_SPEED:
-                GetComponent<FirstPersonController>().moveSpeedBuff.Add(modifier);
-                break;
-            case ModifierType.HP:
-                Heal(modifier.value);
-                break;
-            case ModifierType.SHIELD:
-                SetShield(true);
-                break;
-            case ModifierType.CUT_TRAP:
-                hasCutTrap = true;
-                break;
-            case ModifierType.BLIND:
-                hasBlind = true;
-                break;
+            switch (modifier.type)
+            {
+                case ModifierType.MOVEMENT_SPEED:
+                    GetComponent<FirstPersonController>().moveSpeedBuff.Add(modifier);
+                    break;
+                case ModifierType.HP:
+                    Heal(modifier.value);
+                    break;
+                case ModifierType.SHIELD:
+                    SetShield(true);
+                    break;
+                case ModifierType.CUT_TRAP:
+                    hasCutTrap = true;
+                    break;
+                case ModifierType.BLIND:
+                    hasBlind = true;
+                    break;
+            }
+            AddPoint(-cost);
         }
     }
 

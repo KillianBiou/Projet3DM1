@@ -74,6 +74,7 @@ public class GameContext : NetworkBehaviour
     {
         instance.SetRoomState(GamePhase.REST);
         roomManager.InstanciateRestRoomSchedule();
+        playerObject.GetComponent<Player>().AddPoint(roomManager.GetCurrentRoom().GetComponent<RoomData>().level * 2);
     }
 
     [ObserversRpc]

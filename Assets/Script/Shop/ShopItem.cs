@@ -14,21 +14,60 @@ public class ShopItem : MonoBehaviour
     private string itemDescription = "Placeholder";
 
     [SerializeField]
+    private int cost = 1;
+
+    [SerializeField]
     private Modifier effect;
+
+    private bool canBuy;
 
     #endregion
     #region Internal Parameters
 
     private GameObject UICanvas;
+    private Player player;
 
     #endregion
 
     private void Start()
     {
+        player = GameContext.instance.playerObject.GetComponent<Player>();
         UICanvas = transform.GetChild(0).gameObject;
 
+        RefreshOffer();
+    }
+
+    private void RefreshOffer()
+    {
+        bool canBuy = true;
+        switch(effect.type)
+        {
+            case ModifierType.SHIELD:
+                if (player.GetHaveShield())
+                    canBuy = false;
+                break;
+            case ModifierType.CUT_TRAP:
+                if(player.GetHasCutTrap())
+                    canBuy = false;
+                break;
+            case ModifierType.BLIND:
+                if(player.GetHasBlind())
+                    canBuy = false;
+                break;
+        }
         UICanvas.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = itemName;
-        UICanvas.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemDescription;
+        if (!canBuy)
+        {
+            UICanvas.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = "Out of stock";
+            UICanvas.transform.Find("Price").gameObject.SetActive(false);
+            UICanvas.transform.Find("Unit").gameObject.SetActive(false);
+        }
+        else
+        {
+            UICanvas.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemDescription;
+            UICanvas.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = cost.ToString();
+        }
+        this.canBuy = canBuy;
     }
 
     public void FetchShopInformation()
@@ -67,8 +106,13 @@ public class ShopItem : MonoBehaviour
 
     public void BuyItem()
     {
-        Debug.Log("Bought : " + itemName);
-        transform.parent.GetComponentInParent<Shop>().Buy();
-        GameContext.instance.GetPlayer().GetComponent<Player>().ProcessShopItem(effect);
+        if (canBuy)
+        {
+            Debug.Log("Bought : " + itemName);
+            transform.parent.GetComponentInParent<Shop>().Buy();
+            GameContext.instance.GetPlayer().GetComponent<Player>().ProcessShopItem(effect, cost);
+
+            RefreshOffer();
+        }
     }
 }

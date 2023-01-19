@@ -68,7 +68,6 @@ public class PlayerUI : MonoBehaviour
 
     private void RefreshShield()
     {
-        Debug.Log(player.GetHaveShield());
         if (player.GetHaveShield())
             externImage.color = shieldColor;
         else
@@ -81,12 +80,10 @@ public class PlayerUI : MonoBehaviour
         {
             if(i < newLife)
             {
-                Debug.Log("Life");
                 lifeImages[i].color = lifeColor;
             }
             else
             {
-                Debug.Log("Non Life");
                 lifeImages[i].color = emptyColor;
             }
         }

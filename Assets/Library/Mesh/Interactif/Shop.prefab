@@ -2742,6 +2742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
+      propertyPath: cost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
       propertyPath: itemName
       value: Double speed
       objectReference: {fileID: 0}
@@ -2854,6 +2859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
+      propertyPath: cost
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
@@ -2987,6 +2997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
+      propertyPath: cost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
       propertyPath: itemName
       value: Cut camera
       objectReference: {fileID: 0}
@@ -3104,6 +3119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
+      propertyPath: cost
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
@@ -3227,6 +3247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
+      propertyPath: cost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
       propertyPath: itemName
       value: Disable traps
       objectReference: {fileID: 0}
@@ -3243,7 +3268,7 @@ PrefabInstance:
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
       propertyPath: itemDescription
-      value: Disable a group of trap
+      value: Disable an aimed trap
       objectReference: {fileID: 0}
     - target: {fileID: 4361604073316571372, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
@@ -3269,6 +3294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056582241290992776, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790737, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
@@ -3339,6 +3369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
+        type: 3}
+      propertyPath: cost
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4361604072913790743, guid: f1d760e64f17b174d80184004499d7fc,
         type: 3}
