@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 2008915589835986156}
   - component: {fileID: 1604358044}
   - component: {fileID: 1604358043}
+  - component: {fileID: 4099778834756554119}
+  - component: {fileID: 3654901752845204783}
   m_Layer: 13
   m_Name: BarrelTrap
   m_TagString: Untagged
@@ -110,6 +112,45 @@ MonoBehaviour:
   emissivePower: 150
   barrelPrefab: {fileID: 865079996569868751, guid: bc45f62b22c3ba548a50f9183fbdb610,
     type: 3}
+--- !u!65 &4099778834756554119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200995147796139606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.5, z: 2.2}
+  m_Center: {x: 0, y: 0, z: -1}
+--- !u!114 &3654901752845204783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200995147796139606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: -1
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 11783244200863978807
+  _sceneNetworkObjects: []
 --- !u!1 &1312928568471609624
 GameObject:
   m_ObjectHideFlags: 0

@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 8770458334813272205}
   - component: {fileID: 8770458334813272204}
   m_Layer: 6
-  m_Name: Interface
+  m_Name: ShopInterface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,7 +662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.102, y: 0.208}
+  m_AnchoredPosition: {x: -0.101989746, y: 0.20800781}
   m_SizeDelta: {x: 0.5, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8770458334813272206

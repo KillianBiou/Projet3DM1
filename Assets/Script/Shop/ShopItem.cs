@@ -41,7 +41,7 @@ public class ShopItem : MonoBehaviour
     {
         for (int i = 0; i <= 100; i += 5)
         {
-            UICanvas.GetComponent<RectTransform>().localScale = (Vector2.one * (i / 100f)) * 5;
+            UICanvas.GetComponent<RectTransform>().localScale = (Vector3.one * (i / 100f)) * 5;
             yield return new WaitForNextFrameUnit();
         }
     }
@@ -50,7 +50,7 @@ public class ShopItem : MonoBehaviour
     {
         for (int i = 100; i >= 100; i -= 5)
         {
-            UICanvas.GetComponent<RectTransform>().localScale = (Vector2.one * (i / 100f)) * 5;
+            UICanvas.GetComponent<RectTransform>().localScale = (Vector3.one * (i / 100f)) * 5;
             yield return new WaitForNextFrameUnit();
         }
     }
@@ -68,6 +68,7 @@ public class ShopItem : MonoBehaviour
     public void BuyItem()
     {
         Debug.Log("Bought : " + itemName);
+        transform.parent.GetComponentInParent<Shop>().Buy();
         GameContext.instance.GetPlayer().GetComponent<Player>().ProcessShopItem(effect);
     }
 }

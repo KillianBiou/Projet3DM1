@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2306175100879489088}
   - component: {fileID: 3865237167013740898}
   - component: {fileID: 4338339481954637031}
+  - component: {fileID: -8662802502773927862}
   m_Layer: 13
   m_Name: ElectroTrap
   m_TagString: Untagged
@@ -154,6 +155,32 @@ MonoBehaviour:
     value: 90
   activatedBrightness: {x: 100, y: 250}
   oscillationFactor: 15
+--- !u!114 &-8662802502773927862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251910941075728789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: -1
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 9937340107748053369
+  _sceneNetworkObjects: []
 --- !u!1001 &1541808063416530314
 PrefabInstance:
   m_ObjectHideFlags: 0

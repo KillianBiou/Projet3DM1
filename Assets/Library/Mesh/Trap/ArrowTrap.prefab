@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1783416648094357301}
   - component: {fileID: 4340819752192481791}
+  - component: {fileID: 920751674787443096}
+  - component: {fileID: -8406783017812469373}
   m_Layer: 13
   m_Name: ArrowTrap
   m_TagString: Untagged
@@ -140,6 +142,45 @@ MonoBehaviour:
   cooldownColor: {r: 0.8867924, g: 0, b: 0.017018668, a: 0}
   firingColor: {r: 0.8625256, g: 0.9056604, b: 0, a: 0}
   emissivePower: 500
+--- !u!65 &920751674787443096
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437817416571604367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8406783017812469373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437817416571604367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: -1
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 15005221880897921537
+  _sceneNetworkObjects: []
 --- !u!1 &1530529157535512837
 GameObject:
   m_ObjectHideFlags: 0

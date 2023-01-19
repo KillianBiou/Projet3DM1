@@ -4,6 +4,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using System.Collections;
 using System.Linq;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Player : NetworkBehaviour
 {
@@ -18,7 +19,6 @@ public class Player : NetworkBehaviour
     private int hp;
 
     [SerializeField]
-    [SyncVar]
     private bool haveShield;
 
     private int points = 0;
@@ -36,6 +36,7 @@ public class Player : NetworkBehaviour
     private bool hasCutTrap;
     [SerializeField]
     private bool hasBlind;
+    [SyncVar]
     private GameObject trapTarget;
 
     private PlayerUI playerUI;
@@ -58,13 +59,6 @@ public class Player : NetworkBehaviour
     {
         base.OnStartServer();
         hp = maxHp;
-        SetShield(false);
-    }
-
-    private void Start()
-    {
-        shieldSystem = GetComponent<ParticleSystem>();
-        shieldSystem.Stop();
     }
 
     private void Update()
@@ -72,7 +66,8 @@ public class Player : NetworkBehaviour
         FadeInvulnerable();
         if (base.IsOwner)
         {
-            //CheckTrapTarget();
+            if(hasCutTrap)
+                CheckTrapTarget();
             UseSkills();
         }
     }
@@ -90,6 +85,8 @@ public class Player : NetworkBehaviour
             playerInput = GetComponent<StarterAssetsInputs>();
             camera = transform.Find("PlayerCameraRoot").GetComponentInChildren<Camera>();
         }
+        shieldSystem = GetComponent<ParticleSystem>();
+        SetShield(false);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -98,7 +95,11 @@ public class Player : NetworkBehaviour
         if (!isInvulnerable)
         {
             if (haveShield)
+            {
+                isInvulnerable = true;
+                StartCoroutine(FadeInvulnerable());
                 SetShield(false);
+            }
             else
             {
                 isInvulnerable = true;
@@ -117,6 +118,12 @@ public class Player : NetworkBehaviour
         if (playerInput.CutTrap && hasCutTrap)
         {
             Debug.Log("Use cut trap");
+            if (trapTarget)
+            {
+                DestroyNetworkTrapTarget();
+                trapTarget = null;
+                hasCutTrap = false;
+            }
         }
         if (playerInput.Blind && hasBlind)
         {
@@ -124,6 +131,12 @@ public class Player : NetworkBehaviour
             hasBlind = false;
             GameContext.instance.gameMasterObject.GetComponent<GameMaster>().CutCamera(5);
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void DestroyNetworkTrapTarget()
+    {
+        ServerManager.Despawn(trapTarget);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -144,6 +157,7 @@ public class Player : NetworkBehaviour
         {
             shieldSystem.Stop();
         }
+        haveShield = value;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -182,13 +196,19 @@ public class Player : NetworkBehaviour
             case ModifierType.SHIELD:
                 SetShield(true);
                 break;
+            case ModifierType.CUT_TRAP:
+                hasCutTrap = true;
+                break;
+            case ModifierType.BLIND:
+                hasBlind = true;
+                break;
         }
     }
 
     private void CheckTrapTarget()
     {
         RaycastHit raycastHit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out raycastHit, 10, 1 << 13))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out raycastHit, 50, 1 << 13))
         {
             SetNewTargetLook(raycastHit.transform.gameObject);
         }
@@ -198,10 +218,12 @@ public class Player : NetworkBehaviour
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
     private void SetNewTargetLook(GameObject trap)
     {
         if (trap != trapTarget)
         {
+            Debug.Log("Change target");
             trapTarget = trap;
         }
     }
@@ -224,5 +246,10 @@ public class Player : NetworkBehaviour
     public bool GetHasBlind()
     {
         return hasBlind;
+    }
+
+    public bool GetHaveShield()
+    {
+        return haveShield;
     }
 }

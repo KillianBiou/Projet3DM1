@@ -31,8 +31,6 @@ public class Shop : MonoBehaviour
     {
         renderers.AddRange(transform.Find("Casing").GetComponentsInChildren<Renderer>());
         ChangeColor(normalColor, minimumEmissivePower);
-
-        StartCoroutine(FakeBuy());
     }
 
     private void ChangeColor(Color color, float emissivePower)

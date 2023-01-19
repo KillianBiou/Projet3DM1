@@ -3,7 +3,9 @@ using System;
 public enum ModifierType{
     MOVEMENT_SPEED,
     HP,
-    SHIELD
+    SHIELD,
+    CUT_TRAP,
+    BLIND
 }
 
 [Serializable]

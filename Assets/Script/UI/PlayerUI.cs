@@ -22,6 +22,12 @@ public class PlayerUI : MonoBehaviour
     private Image blindIcon;
     private Image cutTrapIcon;
 
+    [SerializeField]
+    private Color noShieldColor;
+    [SerializeField]
+    private Color shieldColor;
+    private Image externImage;
+
 
     private Player player;
 
@@ -36,6 +42,8 @@ public class PlayerUI : MonoBehaviour
 
         blindIcon = transform.Find("Skills").Find("Square").Find("Cut").Find("CutCam").GetComponent<Image>();
         cutTrapIcon = transform.Find("Skills").Find("Square").Find("Trap").Find("CutTrap").GetComponent<Image>();
+
+        externImage = transform.Find("Life").Find("Extern").GetComponent<Image>();
 
         player = GetComponentInParent<Player>();
     }
@@ -55,6 +63,16 @@ public class PlayerUI : MonoBehaviour
         }
 
         RefreshSkills();
+        RefreshShield();
+    }
+
+    private void RefreshShield()
+    {
+        Debug.Log(player.GetHaveShield());
+        if (player.GetHaveShield())
+            externImage.color = shieldColor;
+        else
+            externImage.color = noShieldColor;
     }
 
     private void RefreshLife(int newLife)

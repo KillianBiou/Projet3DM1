@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 1117742772}
   - component: {fileID: 1329053271}
   - component: {fileID: 7793873385211777188}
+  - component: {fileID: -1292919092874095888}
   m_Layer: 13
   m_Name: Turret
   m_TagString: InteractTrap
@@ -242,6 +243,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0098808, y: 1.6408209, z: 2.0200891}
   m_Center: {x: 0.0077039003, y: 0.8131537, z: 0.013991594}
+--- !u!114 &-1292919092874095888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474327195339274026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: -1
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 6166532434525599473
+  _sceneNetworkObjects: []
 --- !u!1 &1991955239830597524
 GameObject:
   m_ObjectHideFlags: 0
