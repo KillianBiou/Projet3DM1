@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -81,7 +82,7 @@ public class PlayerUI : MonoBehaviour
 
     private void RefreshTimer()
     {
-        timerText.text = GameContext.instance.roomTimer.ToString();
+        timerText.text = TimeSpan.FromSeconds(GameContext.instance.roomTimer).ToString(@"mm\:ss");
     }
 
     private void RefreshLife(int newLife)

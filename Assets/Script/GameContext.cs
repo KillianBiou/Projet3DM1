@@ -38,6 +38,7 @@ public class GameContext : NetworkBehaviour
 
     public void StartGame()
     {
+        Destroy(GameObject.FindGameObjectWithTag("Pregame").gameObject);
         gamePhase = GamePhase.REST;
 
         roomManager.enabled = true;

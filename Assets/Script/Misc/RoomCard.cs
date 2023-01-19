@@ -28,7 +28,7 @@ public class RoomCard : MonoBehaviour
         Transform mapTemplate = transform.Find("MapTemplate").Find("MapTxT");
 
         mapTemplate.Find("LvLTxT").GetComponentInChildren<TextMeshProUGUI>().text = "LVL " + level.ToString();
-        mapTemplate.Find("TimerArea").GetComponentInChildren<TextMeshProUGUI>().text = TimeSpan.FromSeconds(80).ToString(@"mm\:ss");
+        mapTemplate.Find("TimerArea").GetComponentInChildren<TextMeshProUGUI>().text = TimeSpan.FromSeconds(template.m_timer).ToString(@"mm\:ss");
 
         string trap = "";
         foreach(KeyValuePair<string, int> entry in trapInventory)
