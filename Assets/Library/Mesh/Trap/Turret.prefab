@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: -1292919092874095888}
   m_Layer: 13
   m_Name: Turret
-  m_TagString: InteractTrap
+  m_TagString: TurretTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: -1
+  <PrefabId>k__BackingField: 5
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 6166532434525599473

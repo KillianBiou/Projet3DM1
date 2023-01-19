@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: BigRoom
   m_maxLevel: 3
-  m_template: {fileID: 3002689978616343918, guid: 09d7ef41165cec54995862d7e5adab7a,
+  m_template: {fileID: 2477815513286606990, guid: 1581bac00c6b9c4408188e0f7f89c680,
     type: 3}
-  m_timer: 5
+  m_timer: 45

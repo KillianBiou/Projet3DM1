@@ -29295,7 +29295,7 @@ GameObject:
   - component: {fileID: 7144257526100557052}
   m_Layer: 13
   m_Name: GazTrap
-  m_TagString: Untagged
+  m_TagString: GazTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29377,7 +29377,7 @@ MonoBehaviour:
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: -1
+  <PrefabId>k__BackingField: 1
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 1118094079322124657

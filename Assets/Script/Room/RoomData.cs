@@ -6,6 +6,7 @@ public class RoomData : MonoBehaviour
     public RoomScriptableObject template { get; set; }
     public RoomPhase hasStarted { get; set; }
     public int level { get; set; }
+    public Sprite icon;
 
     public Dictionary<KeyCode, List<TrapInteraction>> interactions = new();
 
@@ -74,7 +75,7 @@ public class RoomData : MonoBehaviour
                 {
                     mr.material.color = Color.red;
                 }
-                entry.GetComponentInChildren<Animator>().SetTrigger("Close");
+                //entry.GetComponentInChildren<Animator>().SetTrigger("Close");
                 break;
 
             case RoomPhase.ENDED:

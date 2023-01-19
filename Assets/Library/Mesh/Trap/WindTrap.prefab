@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: -192267356702853928}
   m_Layer: 13
   m_Name: WindTrap
-  m_TagString: InteractTrap
+  m_TagString: WindTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: -1
+  <PrefabId>k__BackingField: 15
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 15283193710413622379

@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: -6483832000605771583}
   m_Layer: 13
   m_Name: SpikeTrap
-  m_TagString: Untagged
+  m_TagString: SpikeTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: -1
+  <PrefabId>k__BackingField: 4
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 5047119285046336037

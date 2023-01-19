@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: ClassicDeck
   m_EditorClassIdentifier: 
   m_rooms:
-  - {fileID: 11400000, guid: 3c6bf10363903334d83950b1e2d21d39, type: 2}
-  - {fileID: 11400000, guid: 7bb4d80d5e8a2094d9858124b0b67470, type: 2}
-  - {fileID: 11400000, guid: 014176ba651394f48bb0b0ffb439ac24, type: 2}
-  - {fileID: 11400000, guid: bc8656a64faae9744a9a70b38633319d, type: 2}
-  - {fileID: 11400000, guid: bda1d302ca90a684c9bcde0d4fc50f1c, type: 2}
-  - {fileID: 11400000, guid: 1f513170f09e34241921491ad27f904a, type: 2}
   - {fileID: 11400000, guid: 14ec7cb94683d484b8e52d64235e23ef, type: 2}
+  - {fileID: 11400000, guid: 531aa2eb386828747befc0aa587b6902, type: 2}
+  - {fileID: 11400000, guid: 898d6d8cdb27e0c4ea86c4935d2eb1c1, type: 2}

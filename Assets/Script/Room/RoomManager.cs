@@ -30,16 +30,12 @@ public class RoomManager : NetworkBehaviour
         {
             InstanciateRoomServer(roomDeck.GetRoom("BigRoom"), currentRoom, this);
         }
-        else if(Input.GetKeyDown(KeyCode.C) && roomDeck.GetRoom("RTurn")) {
-            InstanciateRoomServer(roomDeck.GetRoom("RTurn"), currentRoom, this);
+        else if(Input.GetKeyDown(KeyCode.C) && roomDeck.GetRoom("LongTunnelMap")) {
+            InstanciateRoomServer(roomDeck.GetRoom("LongTunnelMap"), currentRoom, this);
         }
-        else if (Input.GetKeyDown(KeyCode.V) && roomDeck.GetRoom("Tower"))
+        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("TowerLongRoom"))
         {
-            InstanciateRoomServer(roomDeck.GetRoom("Tower"), currentRoom, this);
-        }
-        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("TestRoom"))
-        {
-            InstanciateRoomServer(roomDeck.GetRoom("TestRoom"), currentRoom, this);
+            InstanciateRoomServer(roomDeck.GetRoom("TowerLongRoom"), currentRoom, this);
         }
     }
 
