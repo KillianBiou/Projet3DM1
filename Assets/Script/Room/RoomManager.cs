@@ -12,6 +12,8 @@ public class RoomManager : NetworkBehaviour
 
     private GameObject roomContainer;
     private GameObject currentRoom;
+    private GameObject lastGameRoom;
+    private GameObject lastRestRoom;
 
     private void Start()
     {
@@ -24,9 +26,9 @@ public class RoomManager : NetworkBehaviour
         {
             InstanciateRoomServer(roomDeck.GetRoom("Classic"), currentRoom, this);
         }
-        else if (Input.GetKeyDown(KeyCode.X) && roomDeck.GetRoom("LTurn"))
+        else if (Input.GetKeyDown(KeyCode.X) && roomDeck.GetRoom("BigRoom"))
         {
-            InstanciateRoomServer(roomDeck.GetRoom("LTurn"), currentRoom, this);
+            InstanciateRoomServer(roomDeck.GetRoom("BigRoom"), currentRoom, this);
         }
         else if(Input.GetKeyDown(KeyCode.C) && roomDeck.GetRoom("RTurn")) {
             InstanciateRoomServer(roomDeck.GetRoom("RTurn"), currentRoom, this);
@@ -64,6 +66,7 @@ public class RoomManager : NetworkBehaviour
         int roomLevel = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
         spawned.GetComponent<RoomData>().level = roomLevel;
 
+        ServerManager.Despawn(lastGameRoom);
         ServerManager.Spawn(spawned);
 
         SetInstanciateRoom(spawned, roomToInstanciate.m_name, roomLevel, roomManager);
@@ -75,7 +78,10 @@ public class RoomManager : NetworkBehaviour
         Debug.Log("Client instanciation");
         spawnedRoom.GetComponent<RoomData>().level = roomLevel;
         spawnedRoom.GetComponent<RoomData>().template = roomDeck.GetRoom(templateName);
+        if(currentRoom)
+            currentRoom.transform.Find("Exit").GetComponentInChildren<Animator>().SetTrigger("Lift");
 
+        lastRestRoom = currentRoom;
         currentRoom = spawnedRoom;
         spawnedRoom.transform.SetParent(roomContainer.transform);
     }
@@ -103,7 +109,9 @@ public class RoomManager : NetworkBehaviour
             spawned = Instantiate(restRoomSO.m_template, Vector3.zero, restRoomSO.m_template.transform.rotation);
         }
 
+        ServerManager.Despawn(lastRestRoom);
         ServerManager.Spawn(spawned);
+
         SetInstanciateRestRoom(spawned, roomManager);
     }
 
@@ -111,6 +119,7 @@ public class RoomManager : NetworkBehaviour
     public void SetInstanciateRestRoom(GameObject spawnedRoom, RoomManager roomManager)
     {
         Debug.Log("Client instanciation");
+        lastGameRoom = currentRoom;
         currentRoom = spawnedRoom;
         spawnedRoom.transform.SetParent(roomContainer.transform);
     }

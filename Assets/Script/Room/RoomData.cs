@@ -26,7 +26,7 @@ public class RoomData : MonoBehaviour
             }
         }
         entry = transform.Find("Entry").gameObject;
-        entry.GetComponentInChildren<Animator>().SetTrigger("Lift");
+
         exit = transform.Find("Exit").gameObject;
     }
 
@@ -41,7 +41,7 @@ public class RoomData : MonoBehaviour
 
     public void TriggerStart()
     {
-        GameContext.instance.StartARoom(10f);
+        GameContext.instance.StartARoom(template.m_timer);
     }
 
     public void RegisterTrap(KeyCode code, TrapInteraction trap)
@@ -70,8 +70,6 @@ public class RoomData : MonoBehaviour
         {
             case RoomPhase.STARTED:
                 hasStarted = RoomPhase.STARTED;
-                transform.Find("Entry").GetComponent<BoxCollider>().isTrigger = false;
-                transform.Find("Entry").GetComponent<BoxCollider>().center = Vector3.zero + Vector3.up * 5;
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
                 {
                     mr.material.color = Color.red;
@@ -81,7 +79,6 @@ public class RoomData : MonoBehaviour
 
             case RoomPhase.ENDED:
                 hasStarted = RoomPhase.ENDED;
-                Destroy(transform.Find("Exit").GetComponent<BoxCollider>());
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
                 {
                     mr.material.color = Color.white;

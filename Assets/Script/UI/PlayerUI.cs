@@ -28,6 +28,8 @@ public class PlayerUI : MonoBehaviour
     private Color shieldColor;
     private Image externImage;
 
+    private TextMeshProUGUI timerText;
+
 
     private Player player;
 
@@ -44,6 +46,8 @@ public class PlayerUI : MonoBehaviour
         cutTrapIcon = transform.Find("Skills").Find("Square").Find("Trap").Find("CutTrap").GetComponent<Image>();
 
         externImage = transform.Find("Life").Find("Extern").GetComponent<Image>();
+
+        timerText = transform.Find("Timer").Find("Overlay").GetComponentInChildren<TextMeshProUGUI>();
 
         player = GetComponentInParent<Player>();
     }
@@ -64,6 +68,7 @@ public class PlayerUI : MonoBehaviour
 
         RefreshSkills();
         RefreshShield();
+        RefreshTimer();
     }
 
     private void RefreshShield()
@@ -72,6 +77,11 @@ public class PlayerUI : MonoBehaviour
             externImage.color = shieldColor;
         else
             externImage.color = noShieldColor;
+    }
+
+    private void RefreshTimer()
+    {
+        timerText.text = GameContext.instance.roomTimer.ToString();
     }
 
     private void RefreshLife(int newLife)

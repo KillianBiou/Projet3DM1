@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RestRoom
   m_EditorClassIdentifier: 
   m_name: RestRoom
-  m_maxLevel: 5
-  m_template: {fileID: 5631231806404788900, guid: a6a4c086010b33545a59be757dc4a206,
+  m_maxLevel: 1
+  m_template: {fileID: 2528032232450355109, guid: 199f97a865c379f4db0274b9abf969f1,
     type: 3}
   m_timer: 0

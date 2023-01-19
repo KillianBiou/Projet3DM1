@@ -1,4 +1,5 @@
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using System.Collections;
 using UnityEngine;
 
@@ -25,6 +26,9 @@ public class GameContext : NetworkBehaviour
 
     public GameObject playerObject;
     public GameObject gameMasterObject;
+
+    [SyncVar]
+    public float roomTimer;
 
     public void Start()
     {
@@ -59,13 +63,18 @@ public class GameContext : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void StartARoom(float challengeTimer)
     {
+        roomTimer = challengeTimer;
         instance.SetRoomState(GamePhase.ROOM);
         StartCoroutine(RoomClock(challengeTimer));
     }
 
     private IEnumerator RoomClock(float challengeTimer)
     {
-        yield return new WaitForSeconds(challengeTimer);
+        for(int i = 0; i <= (int)challengeTimer; i++)
+        {
+            roomTimer = challengeTimer - i;
+            yield return new WaitForSeconds(1);
+        }
         EndARoom();
     }
 
