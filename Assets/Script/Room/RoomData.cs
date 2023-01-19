@@ -80,6 +80,7 @@ public class RoomData : MonoBehaviour
                 break;
 
             case RoomPhase.ENDED:
+                GameContext.instance.playerObject.GetComponent<Player>().AddPoint(level * 2);
                 hasStarted = RoomPhase.ENDED;
                 Destroy(transform.Find("Exit").GetComponent<BoxCollider>());
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())

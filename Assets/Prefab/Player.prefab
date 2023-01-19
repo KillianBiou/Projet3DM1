@@ -244,7 +244,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 12799
+    m_Bits: 29183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -749,12 +749,14 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: -6332982905836727307}
   _networkObjectCache: {fileID: -6332982905836727307}
   maxHp: 5
+  points: 0
   hp: 0
   haveShield: 0
   isInvulnerable: 0
   invulnerableDuration: 1
   hasCutTrap: 0
   hasBlind: 0
+  trapTarget: {fileID: 0}
 --- !u!114 &8997996946051494442
 MonoBehaviour:
   m_ObjectHideFlags: 0

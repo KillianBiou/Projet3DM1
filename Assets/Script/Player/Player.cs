@@ -16,12 +16,14 @@ public class Player : NetworkBehaviour
 
     [SerializeField]
     [SyncVar]
+    private int points;
+
+    [SerializeField]
+    [SyncVar]
     private int hp;
 
     [SerializeField]
     private bool haveShield;
-
-    private int points = 0;
 
     #endregion
 
@@ -226,6 +228,12 @@ public class Player : NetworkBehaviour
             Debug.Log("Change target");
             trapTarget = trap;
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void AddPoint(int amount)
+    {
+        this.points += amount;
     }
 
     public int GetHP()
