@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 
 public class TurretTrap : MonoBehaviour, TrapInteraction
@@ -80,6 +82,8 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
                 renderer.material.SetColor("_EmissiveColor", normalColor * emissivePower);
             }
         }
+
+        transform.Find("UI").Find("Image").GetComponentInChildren<TextMeshProUGUI>().text = Regex.Replace(activationKey.ToString(), @"[a-zA-Z]", "");
     }
 
     private void Update()

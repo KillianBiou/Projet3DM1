@@ -2,6 +2,8 @@ using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -65,6 +67,8 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
         }
 
         trapDirection = transform.Find("BlowerDirection");
+
+        transform.Find("UI").Find("Image").GetComponentInChildren<TextMeshProUGUI>().text = Regex.Replace(activationKey.ToString(), @"[a-zA-Z]", "");
     }
 
     private void Update()
