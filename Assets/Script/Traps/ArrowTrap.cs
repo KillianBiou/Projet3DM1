@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArrowTrap : MonoBehaviour
@@ -17,6 +18,8 @@ public class ArrowTrap : MonoBehaviour
     private int damage;
     [SerializeField]
     private float arrowSpeed;
+    [SerializeField]
+    private float fadeOutSeconds;
 
     [SerializeField]
     private Color cooldownColor;
@@ -33,11 +36,13 @@ public class ArrowTrap : MonoBehaviour
     private List<Transform> arrowSpawners = new List<Transform>();
     private List<GameObject> currentArrows = new List<GameObject>();
     private List<Renderer> emmisiveRenderers = new List<Renderer>();
+    private AudioSource fireSound;
 
     #endregion
 
     private void Start()
     {
+        fireSound = GetComponent<AudioSource>();
         foreach(Transform t in transform.Find("ArrowSpawners"))
         {
             arrowSpawners.Add(t);
@@ -48,6 +53,7 @@ public class ArrowTrap : MonoBehaviour
         foreach(Transform transform in arrowSpawners)
         {
             currentArrows.Add(transform.GetChild(0).gameObject);
+            transform.GetChild(0).AddComponent<Arrow>();
             transform.GetChild(0).GetComponent<Arrow>().damage = damage;
         }
 
@@ -113,25 +119,27 @@ public class ArrowTrap : MonoBehaviour
         foreach(GameObject arrow in currentArrows)
         {
             if(arrow)
-                StartCoroutine(arrow.GetComponent<Arrow>().ScheduleDestruction(2));
+                StartCoroutine(arrow.GetComponent<Arrow>().ScheduleDestruction(fadeOutSeconds));
         }
 
         currentArrows.Clear();
 
         foreach (Transform spawner in arrowSpawners)
         {
-            GameObject arrow = Instantiate(arrowPrefab, spawner.transform.position, arrowPrefab.transform.rotation * transform.rotation, spawner);
-            arrow.GetComponent<Arrow>().damage = damage;
+            GameObject arrow = Instantiate(arrowPrefab, spawner.transform.position, Quaternion.identity * transform.rotation * arrowPrefab.transform.rotation, spawner);
             currentArrows.Add(arrow);
         }
     }
 
     private void ThrowArrows()
     {
+        fireSound.Play();
         foreach(GameObject arrow in currentArrows)
         {
             arrow.GetComponent<Rigidbody>().isKinematic = false;
             arrow.GetComponent<Rigidbody>().AddForce(arrow.transform.forward * arrowSpeed);
+            Arrow currentArrow = arrow.AddComponent<Arrow>();
+            currentArrow.damage = damage;
         }
         StartCoroutine(RespawnArrows());
     }

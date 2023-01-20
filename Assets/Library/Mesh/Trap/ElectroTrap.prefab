@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2961318192477830584}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,9 +48,11 @@ GameObject:
   - component: {fileID: 2306175100879489088}
   - component: {fileID: 3865237167013740898}
   - component: {fileID: 4338339481954637031}
-  m_Layer: 0
+  - component: {fileID: -8662802502773927862}
+  - component: {fileID: 8277676773099825989}
+  m_Layer: 13
   m_Name: ElectroTrap
-  m_TagString: Untagged
+  m_TagString: ElectricTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,12 +150,134 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   upTime: 2
-  damage: 5
+  damage: 1
   slow:
-    debuff_type: 0
-    percentage: 90
+    type: 0
+    value: 90
   activatedBrightness: {x: 100, y: 250}
   oscillationFactor: 15
+--- !u!114 &-8662802502773927862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251910941075728789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 10
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 9937340107748053369
+  _sceneNetworkObjects: []
+--- !u!82 &8277676773099825989
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251910941075728789}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ad4105433fd155e428f8ab99347d683a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1541808063416530314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +285,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,6 +309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -250,6 +384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -381,6 +520,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: -0.2630001
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -411,6 +560,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.294
       objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}
 --- !u!4 &1187837062687520701 stripped
@@ -426,6 +580,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,6 +604,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -515,6 +679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -646,6 +815,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: 0.20799997
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -676,6 +855,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.294
       objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}
 --- !u!4 &4917294112789597468 stripped
@@ -691,6 +875,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -710,6 +899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -780,6 +974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -881,6 +1080,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: 0.669
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -911,6 +1120,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.294
       objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}
 --- !u!4 &5888831214742420162 stripped
@@ -926,6 +1140,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2961318192477830584}
     m_Modifications:
+    - target: {fileID: 367485098673107288, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485098673107289, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -945,6 +1164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Electric VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485098818142774, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485098818142775, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -1015,6 +1239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485099325382467, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 367485099575192306, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
@@ -1121,6 +1350,16 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
       value: 0.669
       objectReference: {fileID: 0}
+    - target: {fileID: 367485099575192316, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100134277686, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 367485100134277687, guid: b97b5124135ebf94999744ac994bb9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1150,6 +1389,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 367485100420809503, guid: b97b5124135ebf94999744ac994bb9d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b5124135ebf94999744ac994bb9d5, type: 3}

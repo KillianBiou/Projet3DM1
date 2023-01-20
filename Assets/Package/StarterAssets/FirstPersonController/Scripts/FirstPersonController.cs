@@ -18,14 +18,22 @@ namespace StarterAssets
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
-		[Tooltip("Cumulative slow applied on the player in %")]
-		public List<Debuff> slowDebuff;
-		[Tooltip("Rotation speed of the character")]
+		[Tooltip("List of slow applied on the player in % (Only strongest apply)")]
+		public List<Modifier> slowDebuff;
+        [Tooltip("List of speed buff applied on the player in % (Only strongest apply)")]
+        public List<Modifier> moveSpeedBuff;
+        [Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+        [Tooltip("Normal height")]
+        public float normalHeight;
+        [Tooltip("Crouch height")]
+		public float crouchHeight;
+        [Tooltip("Crouch speed debuff (percentage)")]
+        public float crouchDebuff;
 
-		[Space(10)]
+        [Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -69,6 +77,7 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+		private bool _crouchMemory = false;
 
 	
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -77,6 +86,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private Animator animator;
 
 		private const float _threshold = 0.01f;
 
@@ -103,10 +113,11 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			animator = transform.Find("Character").GetComponentInChildren<Animator>();
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-			_playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<PlayerInput>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -119,20 +130,41 @@ namespace StarterAssets
 		private void Update()
 		{
 			JumpAndGravity();
+			Crouch();
 			GroundedCheck();
-			Move();
-		}
+            Move();
+        }
 
 		private void LateUpdate()
 		{
 			CameraRotation();
-		}
+        }
 
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
+			bool memory = Grounded;
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+			if (Grounded && !memory)
+			{
+                animator.SetBool("Jump", false);
+            }
+        }
+		private void Crouch()
+		{
+			if (_input.crouch && !_crouchMemory)
+			{
+				_controller.height = crouchHeight;
+				MoveSpeed *= (1 - (crouchDebuff / 100f));
+				_crouchMemory = true;
+			}
+			else if(!_input.crouch && _crouchMemory)
+			{
+				_controller.height = normalHeight;
+                MoveSpeed /= (1 -(crouchDebuff / 100f));
+				_crouchMemory = false;
+            }
 		}
 
 		private void CameraRotation()
@@ -161,17 +193,22 @@ namespace StarterAssets
 		{
 			Rigidbody rb = GetComponent<Rigidbody>();
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = (_input.sprint ? SprintSpeed : MoveSpeed);
+			float targetSpeed =  MoveSpeed;
 			if(slowDebuff.Count > 0)
 			{
-				targetSpeed *= (1 - slowDebuff.Max(t => t.percentage) / 100f);
+				targetSpeed *= (1 - slowDebuff.Max(t => t.value) / 100f);
             }
 
-			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+            if (moveSpeedBuff.Count > 0)
+            {
+                targetSpeed += targetSpeed * (moveSpeedBuff.Max(t => t.value) / 100f);
+            }
 
-			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+
+            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+            // if there is no input, set the target speed to 0
+            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -207,7 +244,7 @@ namespace StarterAssets
 
             // move the player
             _controller.Move((inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime));
-            //rb.MovePosition((inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime));
+			animator.SetFloat("Speed", inputDirection.magnitude);
 		}
 
 		private void JumpAndGravity()
@@ -226,6 +263,7 @@ namespace StarterAssets
 				// Jump
 				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
 				{
+					animator.SetBool("Jump", true);
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 				}

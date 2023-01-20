@@ -12,6 +12,9 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool crouch;
+		public bool Blind;
+		public bool CutTrap;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -43,10 +46,25 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+        public void OnCrouch(InputValue value)
+        {
+            CrouchInput(value.isPressed);
+        }
+
+        public void OnBlind(InputValue value)
+        {
+            BlindInput(value.isPressed);
+        }
+
+        public void OnCutTrap(InputValue value)
+        {
+            CutTrapInput(value.isPressed);
+        }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -65,8 +83,23 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		
-		private void OnApplicationFocus(bool hasFocus)
+
+		public void CrouchInput(bool newCrouchState)
+		{
+			crouch = newCrouchState;
+        }
+
+        public void BlindInput(bool newBlindState)
+        {
+            Blind = newBlindState;
+        }
+
+        public void CutTrapInput(bool newTrapState)
+        {
+            CutTrap = newTrapState;
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}

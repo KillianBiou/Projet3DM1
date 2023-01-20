@@ -1,12 +1,16 @@
 using System;
 
 public enum ModifierType{
-    MOVEMENT_SPEED
+    MOVEMENT_SPEED,
+    HP,
+    SHIELD,
+    CUT_TRAP,
+    BLIND
 }
 
 [Serializable]
-public struct Debuff
+public struct Modifier
 {
-    public DebuffType debuff_type;
-    public int percentage;
+    public ModifierType type;
+    public int value;
 }

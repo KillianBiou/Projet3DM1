@@ -16,19 +16,7 @@ public class Arrow : MonoBehaviour
         else
         {
             Destroy(GetComponent<Rigidbody>());
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<Player>().TakeDamage(damage);
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<BoxCollider>());
         }
     }
 

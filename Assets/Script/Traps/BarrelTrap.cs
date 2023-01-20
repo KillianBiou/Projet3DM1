@@ -95,7 +95,7 @@ public class BarrelTrap : MonoBehaviour
 
     public void Attack()
     {
-        Barrel barrel = Instantiate(barrelPrefab, barrelOrigin.position, barrelPrefab.transform.rotation).GetComponent<Barrel>();
+        Barrel barrel = Instantiate(barrelPrefab, barrelOrigin.position, transform.rotation * barrelPrefab.transform.localRotation).GetComponent<Barrel>();
         barrel.Initialize(explosionRadius, damage, tickingOffSeconds);
     }
 }

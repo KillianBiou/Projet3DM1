@@ -2,10 +2,12 @@ using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BlowerTrap : MonoBehaviour
+public class BlowerTrap : MonoBehaviour, TrapInteraction
 {
     #region Parameters
 
@@ -17,12 +19,16 @@ public class BlowerTrap : MonoBehaviour
 
     private Animator animator;
 
+
+
     [SerializeField]    
     private bool turbo;
     [SerializeField]
     private float turboMulti;
     [SerializeField] 
     private float activationDuration;
+    [SerializeField]
+    private KeyCode activationKey;
 
     [SerializeField]
     private Color normalColor;
@@ -36,6 +42,11 @@ public class BlowerTrap : MonoBehaviour
     [SerializeField]
     private float cooldown;
 
+    [SerializeField]
+    private AudioSource slowSource;
+    [SerializeField]
+    private AudioSource fastSource;
+
     private float clock;
 
     private BoxCollider trapCollider;
@@ -45,10 +56,14 @@ public class BlowerTrap : MonoBehaviour
 
     private List<Renderer> emmisiveRenderers = new List<Renderer>();
 
+    private LayerMask hitMask = ~((1 << 0) | (1 << 2));
+
     #endregion
 
     private void Start()
     {
+        Register();
+
         animator = GetComponent<Animator>();
         trapCollider = GetComponentInChildren<BoxCollider>();
         emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
@@ -59,12 +74,14 @@ public class BlowerTrap : MonoBehaviour
         }
 
         trapDirection = transform.Find("BlowerDirection");
+
+        transform.Find("UI").Find("Image").GetComponentInChildren<TextMeshProUGUI>().text = Regex.Replace(activationKey.ToString(), @"[a-zA-Z]", "");
     }
 
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity))
+        if (Physics.BoxCast(transform.position, transform.lossyScale / 1.4f, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity, hitMask))
         {
             if (hit.transform.CompareTag("Player"))
             {
@@ -96,6 +113,8 @@ public class BlowerTrap : MonoBehaviour
     {
         if (state == TrapState.UP)
         {
+            slowSource.Stop();
+            fastSource.Play();
             animator.speed = turboMulti;
             turbo = true;
             foreach (Renderer renderer in emmisiveRenderers)
@@ -105,6 +124,8 @@ public class BlowerTrap : MonoBehaviour
         }
         else if(state == TrapState.COOLDOWN)
         {
+            slowSource.Play();
+            fastSource.Stop();
             turbo = false;
             animator.speed = 1;
             foreach (Renderer renderer in emmisiveRenderers)
@@ -120,15 +141,8 @@ public class BlowerTrap : MonoBehaviour
             {
                 renderer.material.SetColor("_EmissiveColor", normalColor * emissivePower);
             }
-            StartCoroutine(FakeInput());
         }
         currentState = state;
-    }
-
-    private IEnumerator FakeInput()
-    {
-        yield return new WaitForSeconds(3);
-        ChangeTrapState(TrapState.UP);
     }
 
     private void HitEffect(Player player)
@@ -138,22 +152,16 @@ public class BlowerTrap : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = true;
     }
 
-    void OnDrawGizmos()
+    public void Register()
     {
-        RaycastHit hit;
+        transform.parent.GetComponentInParent<RoomData>().RegisterTrap(activationKey, this);
+    }
 
-        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, trapDirection.forward, out hit, transform.rotation, Mathf.Infinity);
-        Gizmos.DrawWireCube(transform.position + trapDirection.forward * 1, transform.lossyScale * 1.5f);
-        if (isHit)
+    public void Activation()
+    {
+        if(currentState == TrapState.CAN_BE_USED)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, trapDirection.forward * hit.distance);
-            Gizmos.DrawWireCube(transform.position + trapDirection.forward * hit.distance, transform.lossyScale * 1.5f);
-        }
-        else
-        {   
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, trapDirection.forward * 25);
+            ChangeTrapState(TrapState.UP);
         }
     }
 }

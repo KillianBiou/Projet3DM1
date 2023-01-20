@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411683557}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BarrelSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411683556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.079}
+  m_LocalPosition: {x: 0, y: 0, z: -1.191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,9 +42,11 @@ GameObject:
   - component: {fileID: 2008915589835986156}
   - component: {fileID: 1604358044}
   - component: {fileID: 1604358043}
-  m_Layer: 0
+  - component: {fileID: 4099778834756554119}
+  - component: {fileID: 3654901752845204783}
+  m_Layer: 13
   m_Name: BarrelTrap
-  m_TagString: Untagged
+  m_TagString: BarrelTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,14 +104,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   upTime: 1.5
-  damage: 10
+  damage: 2
   explosionRadius: 3
   tickingOffSeconds: 3
   cooldownColor: {r: 0.8867924, g: 0, b: 0, a: 0}
   firingColor: {r: 1, g: 0.9654912, b: 0, a: 0}
   emissivePower: 150
-  barrelPrefab: {fileID: 865079996569868751, guid: bc45f62b22c3ba548a50f9183fbdb610,
+  barrelPrefab: {fileID: 198877525240551618, guid: da945e236f116e2419a7575a313f08d5,
     type: 3}
+--- !u!65 &4099778834756554119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200995147796139606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.5, z: 2.2}
+  m_Center: {x: 0, y: 0, z: -1}
+--- !u!114 &3654901752845204783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200995147796139606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 10
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 11783244200863978807
+  _sceneNetworkObjects: []
 --- !u!1 &1312928568471609624
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +163,7 @@ GameObject:
   - component: {fileID: 8540073879020839825}
   - component: {fileID: 8503892191459922218}
   - component: {fileID: 10448278}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Barrel_Opening01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +261,7 @@ GameObject:
   - component: {fileID: 6614274456504694172}
   - component: {fileID: 4880264384805232094}
   - component: {fileID: 1528362292}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Barrel_Opening02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +358,7 @@ GameObject:
   - component: {fileID: 4905421369014399764}
   - component: {fileID: 1627740210430827727}
   - component: {fileID: 3593148445489479624}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Barrel_Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9006241521094432751}
   - component: {fileID: 8937852393105819005}
   - component: {fileID: 707527732622348291}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1783416648094357301}
   - component: {fileID: 4340819752192481791}
-  m_Layer: 0
+  - component: {fileID: 920751674787443096}
+  - component: {fileID: -8406783017812469373}
+  - component: {fileID: 2544759020823230040}
+  m_Layer: 13
   m_Name: ArrowTrap
-  m_TagString: Untagged
+  m_TagString: ArrowTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,11 +137,147 @@ MonoBehaviour:
   upTime: 1
   arrowPrefab: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
     type: 3}
-  damage: 10
+  damage: 1
   arrowSpeed: 1500
+  fadeOutSeconds: 1
   cooldownColor: {r: 0.8867924, g: 0, b: 0.017018668, a: 0}
   firingColor: {r: 0.8625256, g: 0.9056604, b: 0, a: 0}
   emissivePower: 500
+--- !u!65 &920751674787443096
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437817416571604367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8406783017812469373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437817416571604367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 17
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 15005221880897921537
+  _sceneNetworkObjects: []
+--- !u!82 &2544759020823230040
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437817416571604367}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e9c0957e77553d84c9c9832ff7d4d0f9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1530529157535512837
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +289,7 @@ GameObject:
   - component: {fileID: 2336580165599056667}
   - component: {fileID: 2181144113051888095}
   - component: {fileID: 8636358580413287988}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +373,7 @@ GameObject:
   - component: {fileID: 4814059957485456091}
   - component: {fileID: 11226833902781278}
   - component: {fileID: 4832794808562098030}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +457,7 @@ GameObject:
   - component: {fileID: 1048329552279759706}
   - component: {fileID: 1430749331025022872}
   - component: {fileID: 5435576973237438841}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +541,7 @@ GameObject:
   - component: {fileID: 1524487574652401896}
   - component: {fileID: 9109710523316703464}
   - component: {fileID: 8185661498673027424}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +625,7 @@ GameObject:
   - component: {fileID: 4663238981796616108}
   - component: {fileID: 9166474302250627684}
   - component: {fileID: 3247844933710125947}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +709,7 @@ GameObject:
   - component: {fileID: 5139552232248860077}
   - component: {fileID: 2292238982270892939}
   - component: {fileID: 8889485229462638148}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +793,7 @@ GameObject:
   - component: {fileID: 2625807524146813579}
   - component: {fileID: 602719375006182987}
   - component: {fileID: 2872214665874664375}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +877,7 @@ GameObject:
   - component: {fileID: 2251776121355213514}
   - component: {fileID: 7032625756285030801}
   - component: {fileID: 661398732456188545}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +961,7 @@ GameObject:
   - component: {fileID: 8158507592898560515}
   - component: {fileID: 3535460891623717331}
   - component: {fileID: 3832665857304664629}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +1045,7 @@ GameObject:
   - component: {fileID: 974242382145574168}
   - component: {fileID: 6928988727260409242}
   - component: {fileID: 1804176568272416043}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -990,7 +1129,7 @@ GameObject:
   - component: {fileID: 2904791302021057197}
   - component: {fileID: 3903605607126404319}
   - component: {fileID: 4919311129608082479}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1213,7 @@ GameObject:
   - component: {fileID: 806919350383589304}
   - component: {fileID: 327295742531629977}
   - component: {fileID: 8913032394281559556}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8003041388863558731}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,7 +1344,7 @@ GameObject:
   - component: {fileID: 47517746233231097}
   - component: {fileID: 5332398660189003253}
   - component: {fileID: 230384748930074276}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1289,7 +1428,7 @@ GameObject:
   - component: {fileID: 5337760343190438850}
   - component: {fileID: 4013241991115496395}
   - component: {fileID: 7211542075773009160}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1511,7 @@ GameObject:
   - component: {fileID: 321157650918925697}
   - component: {fileID: 2702660714749910506}
   - component: {fileID: 7501979027458442562}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,7 +1595,7 @@ GameObject:
   - component: {fileID: 4142269208184772726}
   - component: {fileID: 8366689367862434509}
   - component: {fileID: 2198322749899460266}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArrowSpawner (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1541,6 +1680,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1615,6 +1759,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -1691,6 +1840,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1765,6 +1919,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -1841,6 +2000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1915,6 +2079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -1991,6 +2160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2065,6 +2239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -2141,6 +2320,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2215,6 +2399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -2291,6 +2480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2365,6 +2559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -2441,6 +2640,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2515,6 +2719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
@@ -2591,6 +2800,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2665,6 +2879,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565921466284336468, guid: e7b15d23bc7f0e44f9353b18c59112a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8632389272511284308, guid: e7b15d23bc7f0e44f9353b18c59112a8,
         type: 3}

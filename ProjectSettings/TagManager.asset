@@ -4,23 +4,33 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - CinematicTarget
+  - InteractTrap
   - CinemachineTarget
+  - ElectricTrap
+  - BarrelTrap
+  - ArrowTrap
+  - GazTrap
+  - SpikeTrap
+  - WindTrap
+  - TurretTrap
+  - Pregame
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Props
   - Water
   - UI
   - ShopItem
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Projectiles
+  - InteractTrap
+  - Player
+  - GMUI
+  - PLAYERUI
+  - Wall
+  - Trap
+  - GameMaster
   - 
   - 
   - 
@@ -41,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 2730776391
     locked: 0

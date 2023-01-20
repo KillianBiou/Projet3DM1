@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 525426924183847797}
   - component: {fileID: 3523339474713480400}
   - component: {fileID: 1657779707669149722}
-  - component: {fileID: 9195173851196525386}
   - component: {fileID: 3734567283744628473}
   - component: {fileID: 8964546576924712165}
+  - component: {fileID: 5816820363512620356}
   - component: {fileID: 8964546576924712164}
   - component: {fileID: 4681854533335906811}
   - component: {fileID: -6445110116843496700}
@@ -31,14 +31,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865079996569868751}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 8.279, y: 5.215, z: 0.525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &3523339474713480400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,20 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9195173851196525386
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 865079996569868751}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2128599272216676504, guid: fecd61fbf8d71f34aba8040e3c825d4c, type: 3}
 --- !u!54 &3734567283744628473
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,6 +117,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6864108528a1a45b95c940079761fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5816820363512620356
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865079996569868751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &8964546576924712164
 SphereCollider:
   m_ObjectHideFlags: 0

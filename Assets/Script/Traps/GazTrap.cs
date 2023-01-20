@@ -28,11 +28,13 @@ public class GazTrap : MonoBehaviour
     private float currentTimer;
     private List<ParticleSystem> gazParticlesSystems = new List<ParticleSystem>();
     private List<Renderer> emmisiveRenderers = new List<Renderer>();
+    private AudioSource fireSound;
 
     #endregion
 
     private void Start()
     {
+        fireSound = GetComponent<AudioSource>();
         gazParticlesSystems.AddRange(gameObject.GetComponentsInChildren<ParticleSystem>());
         emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
 
@@ -74,6 +76,7 @@ public class GazTrap : MonoBehaviour
     {
         if (state == TrapState.UP)
         {
+            fireSound.Play();
             ToggleParticles(state);
             foreach (Renderer renderer in emmisiveRenderers)
             {
@@ -82,6 +85,7 @@ public class GazTrap : MonoBehaviour
         }
         else
         {
+            fireSound.Stop();
             ToggleParticles(state);
             foreach (Renderer renderer in emmisiveRenderers)
             {

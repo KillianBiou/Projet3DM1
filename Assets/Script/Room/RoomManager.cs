@@ -1,84 +1,180 @@
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using System;
 using Unity.Mathematics;
 using UnityEngine;
-public class RoomManager : MonoBehaviour
+public class RoomManager : NetworkBehaviour
 {
+
     [SerializeField]
     private RoomScriptableObject restRoom;
 
     [SerializeField]
     private RoomDeckScriptableObject roomDeck;
 
+    [SerializeField]
+    private GameObject beginRoom;
+    [SerializeField]
+    private GameObject endRoom;
+
     private GameObject roomContainer;
     private GameObject currentRoom;
+    private GameObject lastGameRoom;
+    private GameObject lastRestRoom;
 
     private void Start()
     {
         roomContainer = GameObject.Find("RoomContainer");
-
-        InstanciateRoom(roomDeck.GetRoom("Classic"));
-        InstanciateRestRoom();
     }
 
-    private void Update()
+    public void RequestRoomConstruction(RoomScriptableObject roomToInstanciate, int lvl)
     {
-        if (Input.GetKeyDown(KeyCode.W) && roomDeck.GetRoom("Classic"))
-        {
-            InstanciateRoom(roomDeck.GetRoom("Classic"));
-            InstanciateRestRoom();
-        }
-        else if(Input.GetKeyDown(KeyCode.X) && roomDeck.GetRoom("LTurn")) {
-            InstanciateRoom(roomDeck.GetRoom("LTurn"));
-            InstanciateRestRoom();
-        }
-        else if(Input.GetKeyDown(KeyCode.C) && roomDeck.GetRoom("RTurn")) {
-            InstanciateRoom(roomDeck.GetRoom("RTurn"));
-            InstanciateRestRoom();
-        }
-        else if (Input.GetKeyDown(KeyCode.V) && roomDeck.GetRoom("Tower"))
-        {
-            InstanciateRoom(roomDeck.GetRoom("Tower"));
-            InstanciateRestRoom();
-        }
-        else if (Input.GetKeyDown(KeyCode.B) && roomDeck.GetRoom("Blockout"))
-        {
-            InstanciateRoom(roomDeck.GetRoom("Blockout"));
-            InstanciateRestRoom();
-        }
+        InstanciateRoomServer(roomDeck.GetRoom(roomToInstanciate.m_name), currentRoom, lvl, this);
     }
 
-    private void InstanciateRoom(RoomScriptableObject roomToInstanciate)
+    public void RequestEndRoomConstruction(bool reversed)
     {
-        if (currentRoom != null)
+        if (reversed)
         {
-            currentRoom = Instantiate(roomToInstanciate.m_template,
-                currentRoom.transform.Find("Exit").position,
-                roomToInstanciate.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
-                roomContainer.transform);
-            currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
-            currentRoom.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
-            currentRoom.GetComponent<RoomData>().level = 2;
+            InstanciateEndRoom(endRoom, currentRoom, this);
+
         }
         else
         {
-            currentRoom = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation, roomContainer.transform);
-            currentRoom.GetComponent<RoomData>().template = roomToInstanciate;
-            currentRoom.GetComponent<RoomData>().level = UnityEngine.Random.Range(1, roomToInstanciate.m_maxLevel + 1);
+            InstanciateEndRoom(beginRoom, currentRoom, this);
         }
     }
 
-    private void InstanciateRestRoom()
+    [ServerRpc(RequireOwnership = false)]
+    public void InstanciateEndRoom(GameObject roomToInstanciate, GameObject lastRoom, RoomManager roomManager)
     {
-        if (currentRoom != null)
+        Debug.Log("SERVER INSTANCIATE");
+
+        GameObject spawned = null;
+        if (lastRoom != null)
         {
-            currentRoom = Instantiate(restRoom.m_template,
-                currentRoom.transform.Find("Exit").position,
-                restRoom.m_template.transform.rotation * currentRoom.transform.Find("Exit").transform.rotation,
-                roomContainer.transform);
+            Quaternion rotation = roomToInstanciate.transform.rotation * lastRoom.transform.Find("Exit").transform.rotation;
+            if (roomToInstanciate.transform.Find("Entry"))
+                rotation *= roomToInstanciate.transform.Find("Entry").rotation;
+
+            spawned = Instantiate(roomToInstanciate,
+                lastRoom.transform.Find("Exit").position,
+                rotation);
         }
         else
         {
-            currentRoom = Instantiate(restRoom.m_template, Vector3.zero, restRoom.m_template.transform.rotation, roomContainer.transform);
+            spawned = Instantiate(roomToInstanciate, Vector3.zero, roomToInstanciate.transform.rotation);
         }
+
+        ServerManager.Despawn(lastGameRoom);
+        ServerManager.Spawn(spawned);
+
+        SetInstanciateEndRoom(spawned);
+    }
+
+    [ObserversRpc]
+    public void SetInstanciateEndRoom(GameObject spawnedRoom)
+    {
+        Debug.Log("Client instanciation");
+        if (currentRoom)
+            currentRoom.transform.Find("Exit").GetComponentInChildren<Animator>().SetTrigger("Lift");
+
+        lastRestRoom = currentRoom;
+        currentRoom = spawnedRoom;
+        spawnedRoom.transform.SetParent(roomContainer.transform);
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void InstanciateRoomServer(RoomScriptableObject roomToInstanciate, GameObject lastRoom, int level, RoomManager roomManager)
+    {
+        Debug.Log("SERVER INSTANCIATE");
+
+        GameObject spawned = null;
+        if (lastRoom != null)
+        {
+            Quaternion rotation = roomToInstanciate.m_template.transform.rotation * lastRoom.transform.Find("Exit").transform.rotation;
+            if (roomToInstanciate.m_template.transform.Find("Entry"))
+                rotation *= roomToInstanciate.m_template.transform.Find("Entry").rotation;
+
+            spawned = Instantiate(roomToInstanciate.m_template,
+                lastRoom.transform.Find("Exit").position,
+                rotation);
+        }
+        else
+        {
+            spawned = Instantiate(roomToInstanciate.m_template, Vector3.zero, roomToInstanciate.m_template.transform.rotation);
+        }
+        spawned.GetComponent<RoomData>().level = level;
+
+        ServerManager.Despawn(lastGameRoom);
+        ServerManager.Spawn(spawned);
+
+        SetInstanciateRoom(spawned, roomToInstanciate.m_name, level, roomManager);
+     }
+
+    [ObserversRpc]
+    public void SetInstanciateRoom(GameObject spawnedRoom, string templateName, int roomLevel, RoomManager roomManager)
+    {
+        Debug.Log("Client instanciation");
+        spawnedRoom.GetComponent<RoomData>().level = roomLevel;
+        spawnedRoom.GetComponent<RoomData>().template = roomDeck.GetRoom(templateName);
+        if (currentRoom)
+        {
+            currentRoom.transform.Find("Exit").GetComponentInChildren<AudioSource>().Play();
+            currentRoom.transform.Find("Exit").GetComponentInChildren<Animator>().SetTrigger("Lift");
+        }
+
+        lastRestRoom = currentRoom;
+        currentRoom = spawnedRoom;
+        spawnedRoom.transform.SetParent(roomContainer.transform);
+    }
+
+    public void InstanciateRestRoomSchedule()
+    {
+        InstanciateRestRoomServer(restRoom, currentRoom, this);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void InstanciateRestRoomServer(RoomScriptableObject restRoomSO, GameObject lastRoom, RoomManager roomManager)
+    {
+        Debug.Log("SERVER INSTANCIATE");
+
+        GameObject spawned = null;
+        Debug.Log(restRoomSO.m_template);
+        if (lastRoom != null)
+        {
+            spawned = Instantiate(restRoomSO.m_template,
+                lastRoom.transform.Find("Exit").position,
+                restRoomSO.m_template.transform.rotation * lastRoom.transform.Find("Exit").transform.rotation);
+        }
+        else
+        {
+            spawned = Instantiate(restRoomSO.m_template, Vector3.zero, restRoomSO.m_template.transform.rotation);
+        }
+
+        ServerManager.Despawn(lastRestRoom);
+        ServerManager.Spawn(spawned);
+
+        SetInstanciateRestRoom(spawned, roomManager);
+    }
+
+    [ObserversRpc]
+    public void SetInstanciateRestRoom(GameObject spawnedRoom, RoomManager roomManager)
+    {
+        Debug.Log("Client instanciation");
+        lastGameRoom = currentRoom;
+        currentRoom = spawnedRoom;
+        spawnedRoom.transform.SetParent(roomContainer.transform);
+    }
+
+    public GameObject GetCurrentRoom()
+    {
+        return currentRoom;
+    }
+
+    public RoomDeckScriptableObject GetDeck()
+    {
+        return roomDeck;
     }
 }
