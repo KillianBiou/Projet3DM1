@@ -15,8 +15,12 @@ public class RoomData : MonoBehaviour
     private GameObject entry;
     private GameObject exit;
 
+    private AudioSource music;
+
     private void Start()
     {
+        music = GetComponent<AudioSource>();
+
         Debug.Log("Lvl : " + level);
         for (int i = 3; i > level; i--)
         {
@@ -70,20 +74,14 @@ public class RoomData : MonoBehaviour
         switch(phase)
         {
             case RoomPhase.STARTED:
+                music.Play();
                 hasStarted = RoomPhase.STARTED;
-                foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
-                {
-                    mr.material.color = Color.red;
-                }
-                //entry.GetComponentInChildren<Animator>().SetTrigger("Close");
                 break;
 
             case RoomPhase.ENDED:
+                music.Stop();
                 hasStarted = RoomPhase.ENDED;
-                foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
-                {
-                    mr.material.color = Color.white;
-                }
+                exit.GetComponentInChildren<AudioSource>().Play();
                 exit.GetComponentInChildren<Animator>().SetTrigger("Lift");
                 break;
         }

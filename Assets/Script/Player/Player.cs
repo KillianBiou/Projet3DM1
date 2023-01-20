@@ -108,6 +108,7 @@ public class Player : NetworkBehaviour
                 hp -= amount;
                 if (hp <= 0)
                 {
+                    GameContext.instance.StartEndServer();
                     Debug.Log("DEAD");
                 }
                 StartCoroutine(FadeInvulnerable());

@@ -150,7 +150,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _X_N:
-        m_Texture: {fileID: 2800000, guid: f158b40ba75780749b99e1248bcb25eb, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3eee188e71b1994ba1432ba528095c7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Y_BC:
@@ -166,7 +166,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Y_N:
-        m_Texture: {fileID: 2800000, guid: f158b40ba75780749b99e1248bcb25eb, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3eee188e71b1994ba1432ba528095c7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Z_BC:
@@ -182,7 +182,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Z_N:
-        m_Texture: {fileID: 2800000, guid: f158b40ba75780749b99e1248bcb25eb, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3eee188e71b1994ba1432ba528095c7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -320,13 +320,13 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _X_Tiling: 0.1
-    - _Y_Tiling: 0.1
+    - _X_Tiling: 0.075
+    - _Y_Tiling: 0.2
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
-    - _Z_Tiling: 0.1
+    - _Z_Tiling: 0.075
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}

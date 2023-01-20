@@ -119,8 +119,11 @@ public class RoomManager : NetworkBehaviour
         Debug.Log("Client instanciation");
         spawnedRoom.GetComponent<RoomData>().level = roomLevel;
         spawnedRoom.GetComponent<RoomData>().template = roomDeck.GetRoom(templateName);
-        if(currentRoom)
+        if (currentRoom)
+        {
+            currentRoom.transform.Find("Exit").GetComponentInChildren<AudioSource>().Play();
             currentRoom.transform.Find("Exit").GetComponentInChildren<Animator>().SetTrigger("Lift");
+        }
 
         lastRestRoom = currentRoom;
         currentRoom = spawnedRoom;

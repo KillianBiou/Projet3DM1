@@ -19,6 +19,8 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
 
     private Animator animator;
 
+
+
     [SerializeField]    
     private bool turbo;
     [SerializeField]
@@ -39,6 +41,11 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
 
     [SerializeField]
     private float cooldown;
+
+    [SerializeField]
+    private AudioSource slowSource;
+    [SerializeField]
+    private AudioSource fastSource;
 
     private float clock;
 
@@ -106,6 +113,8 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
     {
         if (state == TrapState.UP)
         {
+            slowSource.Stop();
+            fastSource.Play();
             animator.speed = turboMulti;
             turbo = true;
             foreach (Renderer renderer in emmisiveRenderers)
@@ -115,6 +124,8 @@ public class BlowerTrap : MonoBehaviour, TrapInteraction
         }
         else if(state == TrapState.COOLDOWN)
         {
+            slowSource.Play();
+            fastSource.Stop();
             turbo = false;
             animator.speed = 1;
             foreach (Renderer renderer in emmisiveRenderers)

@@ -35,11 +35,13 @@ public class SpikeTrap : MonoBehaviour
     private TrapState currentState = TrapState.COOLDOWN;
     private float currentTimer;
     private Animator animator;
+    private AudioSource fireSound;
 
     #endregion
 
     private void Start()
     {
+        fireSound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
         ChangeTrapState(TrapState.COOLDOWN);
@@ -84,6 +86,7 @@ public class SpikeTrap : MonoBehaviour
         }
         else
         {
+            fireSound.Play();
             animator.SetTrigger("Extend");
             animator.ResetTrigger("Retract");
             foreach (Renderer renderer in emmisiveRenderers)

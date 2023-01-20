@@ -1,7 +1,10 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.UI;
 
 public enum GamePhase
 {
@@ -34,6 +37,20 @@ public class GameContext : NetworkBehaviour
     [SyncVar]
     public float roomTimer;
 
+    [SerializeField]
+    private Canvas fadeOutCanvas;
+
+    private Canvas fadeOutInstance;
+
+    [SerializeField]
+    private AudioSource ringSource;
+    [SerializeField]
+    private AudioSource jingle;
+    [SerializeField]
+    private AudioSource supreme;
+    [SerializeField]
+    private AudioSource restRoomMusic;
+
     public void Start()
     {
         instance = this;
@@ -49,6 +66,9 @@ public class GameContext : NetworkBehaviour
 
         playerObject.GetComponent<Player>().StartGame();
         gameMasterObject.GetComponent<GameMaster>().StartGame();
+
+        jingle.Play();
+        supreme.Play();
     }
 
     public void SetPlayer(GameObject player)
@@ -66,12 +86,47 @@ public class GameContext : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
+    public void StartEndServer()
+    {
+        StartEnd();
+    }
+
+    [ObserversRpc]
+    private void StartEnd()
+    {
+        fadeOutInstance = Instantiate(fadeOutCanvas);
+        StartCoroutine(FadeOut());
+    }
+
+    private IEnumerator FadeOut()
+    {
+        Image fadeOutImage = fadeOutInstance.transform.Find("FadeOut").GetComponent<Image>();
+        for (int i = 0; i < 500; i += 2)
+        {
+            fadeOutImage.color = new Color(0, 0, 0, Mathf.Clamp(i / 350f, 0, 1));
+            yield return new WaitForNextFrameUnit();
+        }
+        StartCoroutine(Reload());
+    }
+
+    private IEnumerator Reload()
+    {
+        if (playerObject.GetComponent<Player>().GetHP() > 0)
+            fadeOutInstance.transform.Find("PlayerWinButGMWinAnyway").GetComponent<Image>().enabled = true;
+        else
+            fadeOutInstance.transform.Find("GMWin").GetComponent<Image>().enabled = true;
+        yield return new WaitForSeconds(5);
+        Application.Quit(0);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
     public void StartARoom(float challengeTimer)
     {
         roomTimer = challengeTimer;
         instance.SetRoomState(GamePhase.ROOM);
         instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.ROOM);
         StartCoroutine(RoomClock(challengeTimer));
+        restRoomMusic.Stop();
     }
 
     private IEnumerator RoomClock(float challengeTimer)
@@ -99,6 +154,7 @@ public class GameContext : NetworkBehaviour
             roomManager.InstanciateRestRoomSchedule();
             instance.SetRoomState(GamePhase.REST);
             instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
+            restRoomMusic.Play();
         }
     }
 
@@ -112,6 +168,7 @@ public class GameContext : NetworkBehaviour
         }
         else
         {
+            ringSource.Play();
             roomManager.GetCurrentRoom().GetComponent<RoomData>().ChangeRoomPhase(RoomPhase.ENDED);
             if (instance.playerObject.GetComponent<PlayerInteraction>())
                 instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);

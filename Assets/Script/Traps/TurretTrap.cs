@@ -62,11 +62,14 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
 
     private LaserScope scope;
 
+    private AudioSource fireSound;
+
     #endregion
 
     private void Start()
     {
         Register();
+        fireSound = GetComponent<AudioSource>();
 
         animator = GetComponent<Animator>();
         emmisiveRenderers = GetComponentsInChildren<Renderer>().ToList();
@@ -162,7 +165,6 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
 
     private IEnumerator Shoot(int currentShot)
     {
-        Debug.Log("zdazd");
         if(currentShot < nbShot)
         {
             animator.SetTrigger("Shoot");
@@ -180,6 +182,7 @@ public class TurretTrap : MonoBehaviour, TrapInteraction
     private void ShootBullet()
     {
         RaycastHit hit;
+        fireSound.Play();
         Instantiate(bulletPrefab, cannonTip.transform.position, cannonTip.rotation);
         if(Physics.Raycast(cannonTip.position, cannonTip.forward, out hit, maxDistance))
         {

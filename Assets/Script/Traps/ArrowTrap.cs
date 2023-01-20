@@ -36,11 +36,13 @@ public class ArrowTrap : MonoBehaviour
     private List<Transform> arrowSpawners = new List<Transform>();
     private List<GameObject> currentArrows = new List<GameObject>();
     private List<Renderer> emmisiveRenderers = new List<Renderer>();
+    private AudioSource fireSound;
 
     #endregion
 
     private void Start()
     {
+        fireSound = GetComponent<AudioSource>();
         foreach(Transform t in transform.Find("ArrowSpawners"))
         {
             arrowSpawners.Add(t);
@@ -131,6 +133,7 @@ public class ArrowTrap : MonoBehaviour
 
     private void ThrowArrows()
     {
+        fireSound.Play();
         foreach(GameObject arrow in currentArrows)
         {
             arrow.GetComponent<Rigidbody>().isKinematic = false;

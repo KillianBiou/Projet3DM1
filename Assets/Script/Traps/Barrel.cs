@@ -13,11 +13,13 @@ public class Barrel : MonoBehaviour
     private float currentTimer;
 
     private Player player;
+    private AudioSource fireSound;
 
     #endregion
 
     private void Start()
     {
+        fireSound = GetComponent<AudioSource>();
         GetComponent<SphereCollider>().radius = explosionRadius;
         player = null;
     }
@@ -39,6 +41,7 @@ public class Barrel : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
             HitEffect();
+            fireSound.Play();
             Destroy(this);
         }
     }

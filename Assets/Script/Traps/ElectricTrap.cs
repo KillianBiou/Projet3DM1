@@ -33,11 +33,14 @@ public class ElectricTrap : MonoBehaviour
     private float brightnessMean;
     private Material emmisiveMaterial;
     private Color emmisiveColor;
+    private AudioSource fireSound;
+
 
     #endregion
 
     private void Start()
     {
+        fireSound = GetComponent<AudioSource>();
         player = GameObject.FindObjectOfType<Player>();
         VFXContainer = transform.Find("VFX").gameObject;
         emmisiveMaterial = GetComponent<Renderer>().material;
@@ -55,6 +58,7 @@ public class ElectricTrap : MonoBehaviour
                 currentState = TrapState.UP;
                 GetComponent<MeshRenderer>().material.color = Color.yellow;
                 VFXContainer.SetActive(true);
+                fireSound.Play();
             }
         }
 
@@ -72,6 +76,7 @@ public class ElectricTrap : MonoBehaviour
                 GetComponent<MeshRenderer>().material.color = Color.white ;
                 VFXContainer.SetActive(false);
                 RefreshSlow(false);
+                fireSound.Stop();
             }
         }
     }

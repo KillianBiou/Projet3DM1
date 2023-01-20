@@ -1,6 +1,5 @@
 using FishNet.Object;
 using System.Collections;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class GameMaster : NetworkBehaviour
