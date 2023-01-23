@@ -9,7 +9,7 @@ Wich side will win in this risky game ?
 
 # Feature
 ## General
-The game feature a network-based versus asymetric gameplay. On player control the gamemaster and aims to kill the player, the other tries to survive in those deadly room.
+The game feature a network-based versus asymetric gameplay. One player control the gamemaster and aims to kill the player, the other tries to survive in those deadly room.
 
 ## Player
 The player is a FPS Character with crouch and jump abilities. The player just have to dodge all the traps in the many room that lies ahead of him. between each room, the player have access to a shop to recover HP, getting buff and infilicting debuff to the gamemaster.
