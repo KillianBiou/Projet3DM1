@@ -233,7 +233,6 @@ GameObject:
   - component: {fileID: 7101502605491545349}
   - component: {fileID: 1111800723956461890}
   - component: {fileID: 3183709787070623456}
-  - component: {fileID: 9208556925592508592}
   - component: {fileID: 6211560313678875679}
   m_Layer: 0
   m_Name: GameMaster
@@ -449,9 +448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618b0e3f6c65dd247a4a016150006c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookSpeedController: 120
+  m_LookSpeedController: 80
   m_LookSpeedMouse: 25
-  m_MoveSpeed: 25
+  m_MoveSpeed: 15
   m_MoveSpeedIncrement: 3
   m_Turbo: 10
 --- !u!114 &-3803911362582180564
@@ -472,14 +471,14 @@ MonoBehaviour:
   - {fileID: 6233336745856765056}
   - {fileID: 7101502605491545349}
   - {fileID: 1111800723956461890}
-  - {fileID: 9208556925592508592}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
   _isGlobal: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 20
+  <PrefabId>k__BackingField: 22
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 18398732374587022070
@@ -593,40 +592,6 @@ MonoBehaviour:
   - {fileID: 2284577846183823328}
   - {fileID: 2284577846183823329}
   - {fileID: 2284577846183823333}
---- !u!114 &9208556925592508592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2284577846183823331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7182cff77abeb54495c352b8231bf85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: -3803911362582180564}
-  _networkObjectCache: {fileID: -3803911362582180564}
-  audioClipList:
-  - {fileID: 8300000, guid: 3a3afa6a408908442b5219b8dd998f03, type: 3}
-  - {fileID: 8300000, guid: ba76107a51d9db04f9ee39228b2d00a1, type: 3}
-  - {fileID: 8300000, guid: b26cc03dea1d17c4ebb15e088d5fc803, type: 3}
-  - {fileID: 8300000, guid: e23efb0ed3eae7c4f9873b1080befc74, type: 3}
-  - {fileID: 8300000, guid: b72b4092aac9539448c4891f1f6d1eb7, type: 3}
-  - {fileID: 8300000, guid: 55f38204d4c941a42a35f35af7aed041, type: 3}
-  - {fileID: 8300000, guid: 4af8d4d6fdb38b54e8edc6c8888824de, type: 3}
-  - {fileID: 8300000, guid: bdae2a9304ce35346a9d34cf6d1a3065, type: 3}
-  - {fileID: 8300000, guid: 7dae0ca169b04744b872967b222c934c, type: 3}
-  - {fileID: 8300000, guid: a9817a6a42f31b443bb983b15ef89cfd, type: 3}
-  - {fileID: 8300000, guid: 6930d42fa5124b34ba5b668a044ca98f, type: 3}
-  - {fileID: 8300000, guid: a0e8a13f3622c9a4da286ef32e3c868f, type: 3}
-  - {fileID: 8300000, guid: b995c3209b4f8104fb561d68e7a43e33, type: 3}
-  - {fileID: 8300000, guid: 93c90466d3203d4439a3b3b1ce861812, type: 3}
-  - {fileID: 8300000, guid: 7f483cae6da07d049ad883d965b003d3, type: 3}
-  - {fileID: 8300000, guid: 20cb168b13b0bf3449260c7bd98176d6, type: 3}
-  minimumDelay: 1
-  maximumDelay: 2
 --- !u!82 &6211560313678875679
 AudioSource:
   m_ObjectHideFlags: 0

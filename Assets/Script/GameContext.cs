@@ -10,6 +10,7 @@ public enum GamePhase
 {
     MENU,
     REST,
+    ROOM_END,
     ROOM
 }
 
@@ -152,10 +153,16 @@ public class GameContext : NetworkBehaviour
         else
         {
             roomManager.InstanciateRestRoomSchedule();
-            instance.SetRoomState(GamePhase.REST);
-            instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
+            instance.SetRoomState(GamePhase.ROOM_END);
+            instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.ROOM_END);
             restRoomMusic.Play();
         }
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    public void ChangeRoomStateServer(GamePhase phase)
+    {
+        SetRoomState(phase);
     }
 
     [ObserversRpc]
@@ -166,12 +173,16 @@ public class GameContext : NetworkBehaviour
             if (instance.playerObject.GetComponent<PlayerInteraction>())
                 instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(false);
         }
-        else
+        else if(phase == GamePhase.ROOM_END)
         {
             ringSource.Play();
             roomManager.GetCurrentRoom().GetComponent<RoomData>().ChangeRoomPhase(RoomPhase.ENDED);
             if (instance.playerObject.GetComponent<PlayerInteraction>())
                 instance.playerObject.GetComponent<PlayerInteraction>().SetCanInteract(true);
+        }
+        else if(phase == GamePhase.REST) {
+            if(instance.gameMasterObject.GetComponent<GameMasterInteraction>())
+                instance.gameMasterObject.GetComponent<GameMasterInteraction>().SetGamePhase(GamePhase.REST);
         }
         gamePhase = phase;
     }

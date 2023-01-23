@@ -10,6 +10,7 @@ public class EntranceManager : MonoBehaviour
         {
 
             GetComponentInParent<RoomData>().TriggerStart();
+            Destroy(this);
         }
     }
 }
