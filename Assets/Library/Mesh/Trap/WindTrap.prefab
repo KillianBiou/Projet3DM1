@@ -284,9 +284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825ce2918bd1f724e9a0e350ce792a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blowerForce: 10
+  blowerForce: 3
   turbo: 0
-  turboMulti: 1.5
+  turboMulti: 2
   activationDuration: 5
   activationKey: 49
   normalColor: {r: 0.09620404, g: 1, b: 0, a: 0}

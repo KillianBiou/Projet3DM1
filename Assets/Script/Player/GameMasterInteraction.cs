@@ -11,6 +11,7 @@ public class GameMasterInteraction : MonoBehaviour
     private Transform cardHolder;
 
     private GamePhase currentGamePhase;
+    private bool canInstanciate = false;
 
     private void Start()
     {
@@ -36,25 +37,32 @@ public class GameMasterInteraction : MonoBehaviour
                 if (Input.GetKeyDown((KeyCode)i))
                 {
                     GameContext.instance.ActivateTrap((KeyCode)i);
+
                 }
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (canInstanciate)
             {
-                card1.RequestConstruction();
-                cardHolder.gameObject.SetActive(false);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                card2.RequestConstruction();
-                cardHolder.gameObject.SetActive(false);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                card3.RequestConstruction();
-                cardHolder.gameObject.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    card1.RequestConstruction();
+                    cardHolder.gameObject.SetActive(false);
+                    canInstanciate = false;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    card2.RequestConstruction();
+                    cardHolder.gameObject.SetActive(false);
+                    canInstanciate = false;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    card3.RequestConstruction();
+                    cardHolder.gameObject.SetActive(false);
+                    canInstanciate = false;
+                }
             }
         }
     }
@@ -63,7 +71,7 @@ public class GameMasterInteraction : MonoBehaviour
     {
         if(newPhase == GamePhase.REST)
         {
-
+            canInstanciate = true;
             card1.RandomRoom(GameContext.instance.roomManager.GetDeck());
             card2.RandomRoom(GameContext.instance.roomManager.GetDeck());
             card3.RandomRoom(GameContext.instance.roomManager.GetDeck());
