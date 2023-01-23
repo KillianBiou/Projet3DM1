@@ -43,3 +43,23 @@ There is a total of 7 traps with customisation parameters :
 - Arrow trap
 
 ![Arrow](https://user-images.githubusercontent.com/62405524/214073806-f7d5d257-d66b-4beb-98a3-4d9cb6d7b7a3.gif)
+
+- Blower trap
+
+![Blower](https://user-images.githubusercontent.com/62405524/214079477-d62b0709-3c8a-41d1-8af6-1defa05d9745.gif)
+
+- Gaz Trap
+
+![Gaz](https://user-images.githubusercontent.com/62405524/214080383-697d9ff9-71d9-4531-8249-1c6b65e58a3a.gif)
+
+- Barrel trap
+
+![Barrel](https://user-images.githubusercontent.com/62405524/214083417-b27912b3-50df-4e4e-9cea-a6d55609e793.gif)
+
+- Turret trap
+
+![Turret](https://user-images.githubusercontent.com/62405524/214084395-86462b7e-fb4a-4cf1-9f69-1064f38f32cd.gif)
+
+- Electric trap
+
+![Electric](https://user-images.githubusercontent.com/62405524/214085259-ae19b0d4-c98e-499d-9e6a-3143ed8cdcf7.gif)
