@@ -37,4 +37,9 @@ It works with a 3-card selection, where there is 3 random room (Random template,
 There is a total of 7 traps with customisation parameters :
 
 - Spike trap 
+
 ![SpikeTrap](https://user-images.githubusercontent.com/62405524/214072752-c3f41407-7c1a-46b0-be23-33bbd1ac66bd.gif)
+
+- Arrow trap
+
+![Arrow](https://user-images.githubusercontent.com/62405524/214073806-f7d5d257-d66b-4beb-98a3-4d9cb6d7b7a3.gif)
