@@ -1,5 +1,6 @@
 # Gameplay Video
-[![Minia](https://github.com/KillianBiou/Projet3DM1/assets/62405524/0795bd14-b220-4b15-8cb4-6cf32d6548a3)](https://www.youtube.com/watch?v=TRFAq99FHjc "Trailer"))
+
+[![IMAGE ALT TEXT](https://github.com/KillianBiou/Projet3DM1/assets/62405524/0795bd14-b220-4b15-8cb4-6cf32d6548a3)](https:/www.youtube.com/watch?v=TRFAq99FHjc "Trailer")
 
 # Projet3DM1
 
